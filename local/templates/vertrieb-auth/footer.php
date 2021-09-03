@@ -1,8 +1,8 @@
 <footer id="footer " class="footer">
   <div class="container">
     <div class="footer-block">
-        <a href="#" class="footer-logo">
-            <img src="<?=SITE_TEMPLATE_PATH?>/img/logo-light.png" alt="">
+        <a href="/" class="footer-logo">
+            <img src="<?=SITE_TEMPLATE_PATH?>/img/logo-light.png" alt="<?=IMAGE_ALT?>">
         </a>
         <a href="#" class="footer-feedback">Обратная связь</a>
     </div>

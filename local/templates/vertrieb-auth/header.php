@@ -18,8 +18,8 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 <header id="header-login" class="header-login">
     <div class="container">
         <div class="header-login-block">
-            <a href="#" class="header-login-logo">
-                <img src="<?=SITE_TEMPLATE_PATH?>/img/logo-dark.png" alt="">
+            <a href="/" class="header-login-logo">
+                <img src="<?=SITE_TEMPLATE_PATH?>/img/logo-dark.png" alt="<?=IMAGE_ALT?>">
             </a>
         </div>
     </div>
