@@ -60,7 +60,7 @@ ShowMessage($arResult['ERROR_MESSAGE']);
 									
 									<div class="form-login-buttons">
                                     <button type="submit" class="btn-primary login-btn name="Login" value="<?=GetMessage("AUTH_AUTHORIZE")?>">Войти</button>
-                                    <a data-fancybox data-type="ajax" data-src="/popups/popup-registration.html" href="javascript:;" class="register-btn btn-inline popup-link" href="<?=$arResult["AUTH_REGISTER_URL"]?>" rel="nofollow">Зарегистрироваться</a>
+                                    <a data-fancybox data-type="ajax" data-src="<?=SITE_TEMPLATE_PATH?>/popups/popup-registration.html" href="javascript:;" class="register-btn btn-inline popup-link" href="<?=$arResult["AUTH_REGISTER_URL"]?>" rel="nofollow">Зарегистрироваться</a>
                                 </div>
 							</table>
 						</form>

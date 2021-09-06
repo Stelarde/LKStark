@@ -11,10 +11,17 @@
 $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/libs/swiper-bundle.min.css", true);
 $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/libs/jquery.fancybox.min.cs", true);
 $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
+
 ?>
+
 <?$APPLICATION->ShowHead();?>
+
 </head>
-<body>  
+
+<body> 
+<div class="panel">
+<?$APPLICATION->ShowPanel();?>
+</div> 
 <header id="header-login" class="header-login">
     <div class="container">
         <div class="header-login-block">
