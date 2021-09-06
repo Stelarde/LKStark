@@ -10,6 +10,17 @@ $aMenuLinks = Array(
 			"src" => SITE_TEMPLATE_PATH . "/img/sprite.svg#submenu-home-icon"
 		), 
 		"" 
+	),
+	Array(
+		"Список батарей", 
+		"/batteries/", 
+		Array(
+			
+		), 
+		Array(
+			"src" => SITE_TEMPLATE_PATH . "/img/sprite.svg#sidebar-menu-battery-icon"
+		), 
+		"" 
 	)
 );
 ?>

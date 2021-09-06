@@ -3,22 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Обозреватель объектов");
 
 
-?><?$APPLICATION->IncludeComponent(
-	"bitrix:menu",
-	"",
-	Array(
-		"ALLOW_MULTI_SELECT" => "N",
-		"CHILD_MENU_TYPE" => "left",
-		"DELAY" => "N",
-		"MAX_LEVEL" => "1",
-		"MENU_CACHE_GET_VARS" => array(""),
-		"MENU_CACHE_TIME" => "3600",
-		"MENU_CACHE_TYPE" => "N",
-		"MENU_CACHE_USE_GROUPS" => "Y",
-		"ROOT_MENU_TYPE" => "left",
-		"USE_EXT" => "N"
-	)
-);?>
+?>
 
 <main class="main">
     <div class="main-internal">
@@ -102,185 +87,29 @@ $APPLICATION->SetTitle("Обозреватель объектов");
             </div>
 
             <!-- Таблица объектов -->
-            <div class="grid-item fill">
-                    <div class="v-table-wrap">
-                        <div class="v-table objects grid-dashboard grid-row-gap-15 fill checked-all">
-                            <div class="v-head">
-                                <div class="v-tr grid-dashboard grid-column-gap-30">
-                                    <div class="v-th"><div>
-                                        <div class="v-checkbox all">
-                                            <label>
-                                                <input type="checkbox">
-                                                <div></div>
-                                            </label>
-                                        </div>
-                                    </div></div>
-                                    <div class="v-th"></div>
-                                    <div class="v-th"><div>Название объекта</div></div>
-                                    <div class="v-th"><div>Количество батарей</div></div>
-                                    <div class="v-th"><div>Количество заряженных АКБ</div></div>
-                                    <div class="v-th"><div>Количество разряженных АКБ</div></div>
-                                    <div class="v-th up"> <!-- up/down -->
-                                        <div>
-                                            <a href="javascript:;">
-                                                Активность
-                                                <svg>
-                                                    <use xlink:href="img/sprite.svg#sort-arrow"></use>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="v-th"><div>Полных циклов в сутки</div></div>
-                                    <div class="v-th"><div>Остаточный ресурс</div></div>
-                                    <div class="v-th"></div>
-                                    <div class="v-th"><div>События</div></div>
-                                </div>
-                            </div>
-                            <div class="v-body">
-                                <div class="v-tr grid-dashboard grid-column-gap-30">
-                                    <div class="v-td">
-                                        <div>
-                                            <div class="v-checkbox default">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    <div></div>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="v-td object-icon-block type-1 gray">
-                                        <div>
-                                            <div class="object-icon">
-                                                <img src="<?=SITE_TEMPLATE_PATH?>/img/object-icons/type-1-gray.svg" alt="<?=IMAGE_ALT?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="v-td"><div>Название объекта</div></div>
-                                    <div class="v-td"><div><a href="#">24</a></div></div>
-                                    <div class="v-td"><div>21</div></div>
-                                    <div class="v-td"><div>3</div></div>
-                                    <div class="v-td percent"><div>54,55%</div></div>
-                                    <div class="v-td cycles"><div>29</div></div>
-                                    <div class="v-td percent"><div>58,32%</div></div>
-                                    <div class="v-td"><div></div></div>
-                                    <div class="v-td new-notification"><div><a href="#">2</a></div></div>
-                                </div>
-                                <div class="v-tr grid-dashboard grid-column-gap-30">
-                                    <div class="v-td">
-                                        <div>
-                                            <div class="v-checkbox default">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    <div></div>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="v-td object-icon-block type-2 purple">
-                                        <div>
-                                            <div class="object-icon">
-                                                <img src="<?=SITE_TEMPLATE_PATH?>/img/object-icons/type-2-purple.svg" alt="<?=IMAGE_ALT?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="v-td"><div>Название объекта</div></div>
-                                    <div class="v-td"><div><a href="#">24</a></div></div>
-                                    <div class="v-td"><div>21</div></div>
-                                    <div class="v-td"><div>3</div></div>
-                                    <div class="v-td percent"><div>54,55%</div></div>
-                                    <div class="v-td cycles"><div>29</div></div>
-                                    <div class="v-td percent"><div>58,32%</div></div>
-                                    <div class="v-td"><div></div></div>
-                                    <div class="v-td"><div><a href="#">2</a></div></div>
-                                </div>
-                                <div class="v-tr grid-dashboard grid-column-gap-30">
-                                    <div class="v-td">
-                                        <div>
-                                            <div class="v-checkbox default">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    <div></div>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="v-td object-icon-block type-3 blue">
-                                        <div>
-                                            <div class="object-icon">
-                                                <img src="<?=SITE_TEMPLATE_PATH?>/img/object-icons/type-3-blue.svg" alt="<?=IMAGE_ALT?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="v-td"><div>Название объекта</div></div>
-                                    <div class="v-td"><div><a href="#">24</a></div></div>
-                                    <div class="v-td"><div>21</div></div>
-                                    <div class="v-td"><div>3</div></div>
-                                    <div class="v-td percent"><div>54,55%</div></div>
-                                    <div class="v-td cycles"><div>29</div></div>
-                                    <div class="v-td percent"><div>58,32%</div></div>
-                                    <div class="v-td"><div></div></div>
-                                    <div class="v-td"><div><a href="#">2</a></div></div>
-                                </div>
-                                <div class="v-tr grid-dashboard grid-column-gap-30">
-                                    <div class="v-td">
-                                        <div>
-                                            <div class="v-checkbox default">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    <div></div>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="v-td object-icon-block type-4 gray">
-                                        <div>
-                                            <div class="object-icon">
-                                                <img src="<?=SITE_TEMPLATE_PATH?>/img/object-icons/type-4-gray.svg" alt="<?=IMAGE_ALT?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="v-td"><div>Название объекта</div></div>
-                                    <div class="v-td"><div><a href="#">24</a></div></div>
-                                    <div class="v-td"><div>21</div></div>
-                                    <div class="v-td"><div>3</div></div>
-                                    <div class="v-td percent"><div>54,55%</div></div>
-                                    <div class="v-td cycles"><div>29</div></div>
-                                    <div class="v-td percent"><div>58,32%</div></div>
-                                    <div class="v-td"><div></div></div>
-                                    <div class="v-td"><div><a href="#">2</a></div></div>
-                                </div>
-                                <div class="v-tr grid-dashboard grid-column-gap-30">
-                                    <div class="v-td">
-                                        <div>
-                                            <div class="v-checkbox default">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    <div></div>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="v-td object-icon-block type-5 purple">
-                                        <div>
-                                            <div class="object-icon">
-                                                <img src="<?=SITE_TEMPLATE_PATH?>/img/object-icons/type-5-purple.svg" alt="<?=IMAGE_ALT?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="v-td"><div>Название объекта</div></div>
-                                    <div class="v-td"><div><a href="#">24</a></div></div>
-                                    <div class="v-td"><div>21</div></div>
-                                    <div class="v-td"><div>3</div></div>
-                                    <div class="v-td percent"><div>54,55%</div></div>
-                                    <div class="v-td cycles"><div>29</div></div>
-                                    <div class="v-td percent"><div>58,32%</div></div>
-                                    <div class="v-td"><div></div></div>
-                                    <div class="v-td"><div><a href="#">2</a></div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
+            <? $APPLICATION->IncludeComponent(
+                "vedita:highloadblock.complex",
+                "objectbrowser",
+                [
+                    "BLOCK_ID"           => getHLBlockIDByName("ObjectBrowser"),
+                    "CHECK_PERMISSIONS"  => "Y",
+                    "FILTER_NAME"        => "arFilter",
+                    "PAGEN_ID"           => "page",
+                    "ROWS_PER_PAGE"      => "5",
+                    "ROW_KEY"            => "ID",
+                    "SEF_FOLDER"         => "/obozrevatel-obektov/",
+                    "SEF_MODE"           => "Y",
+                    "SORT_FIELD"         => "ID",
+                    "SORT_ORDER"         => "ASC",
+                    "COMPONENT_TEMPLATE" => "objectbrowser",
+                    "SEF_URL_TEMPLATES"  => [
+                        "list" => "",
+                        "view" => "#ID#/",
+                    ],
+                ],
+                false
+            );
+            ?>
         </div>
     </div>
 </main>
