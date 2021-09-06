@@ -16,21 +16,21 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 </head>
 
 <body>  
-<?$APPLICATION->ShowPanel();?>
+
 <header id="header" class="header">
       <div class="header-block">
         <div class="header-left">
             <div class="header-gumb">
                 <a href="javascript:;" class="js-gumb">
                     <svg>
-                        <use xlink:href="img/sprite.svg#gumb-icon"></use>
+                        <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#gumb-icon"></use>
                     </svg>
                 </a>
             </div>
             <div class="header-back-btn">
                 <a href="#" class="btn-icon">
                     <svg>
-                        <use xlink:href="img/sprite.svg#back-arrow-icon"></use>
+                        <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#back-arrow-icon"></use>
                     </svg>
                     <span>Назад</span>
                 </a>
@@ -40,7 +40,7 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
               <div class="header-notifications">
                   <a href="javascript:;" class="header-notifications-btn">
                         <svg>
-                            <use xlink:href="img/sprite.svg#notification-icon"></use>
+                            <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#notification-icon"></use>
                         </svg>
                       <span>3</span>
                   </a>
@@ -138,7 +138,7 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
               <div class="header-info v-dropdown">
                   <a href="javascript:;" class="header-info-btn v-dropdown-btn">
                     <div class="header-info-photo">
-                        <img src="img/info-photo.jpg" alt="">
+                        <img src="<?=SITE_TEMPLATE_PATH?>/img/info-photo.jpg" alt="<?=IMAGE_ALT?>">
                     </div>
                     <div class="header-info-text">
                         <p class="header-info-text-name">Константин</p>
@@ -147,7 +147,7 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
                     <div class="header-info-arrow">
                         <span>
                           <svg>
-                              <use xlink:href="img/sprite.svg#arrow-down"></use>
+                              <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#arrow-down"></use>
                           </svg>
                         </span>
                     </div>
