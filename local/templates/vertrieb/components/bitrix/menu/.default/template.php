@@ -3,7 +3,6 @@
 <?if (!empty($arResult)):?>
 <ul class="left-menu">
 
-
 </ul>
 <div id="sidebar" class="sidebar">
     <div class="sidebar-block">
@@ -25,7 +24,7 @@
 								<a href="<?=$arItem["LINK"]?>" class="active">
 									<span class="sidebar-menu-icon">
 										<svg>
-											<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#sidebar-menu-object-icon"></use>
+											<use xlink:href="<?=$arItem["PARAMS"]["src"]?>"></use>
 										</svg>
 									</span>
 									<span><?=$arItem["TEXT"]?></span>
@@ -36,7 +35,7 @@
 								<a href="<?=$arItem["LINK"]?>">
 									<span class="sidebar-menu-icon">
 										<svg>
-											<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#sidebar-menu-object-icon"></use>
+											<use xlink:href="<?=$arItem["PARAMS"]["src"]?>"></use>
 										</svg>
 									</span>
 									<span><?=$arItem["TEXT"]?></span>
