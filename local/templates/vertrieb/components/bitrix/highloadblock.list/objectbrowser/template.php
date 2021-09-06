@@ -11,7 +11,6 @@ if (!empty($arResult['ERROR']))
 //$GLOBALS['APPLICATION']->SetTitle('Highloadblock List');
 
 ?>
-<!-- <? print_r($arResult) ?> -->
 <div class="grid-item fill">
     <div class="v-table-wrap">
         <div class="v-table objects grid-dashboard grid-row-gap-15 fill checked-all">
@@ -141,7 +140,7 @@ if (!empty($arResult['ERROR']))
 					<div class="v-td object-icon-block type-1 gray">
 						<div>
 							<div class="object-icon">
-								<img src="<?=SITE_TEMPLATE_PATH?>/img/object-icons/type-1-gray.svg" alt="<?=IMAGE_ALT?>">
+								<img src="<?=SITE_TEMPLATE_PATH . $finalValue?>" alt="<?=IMAGE_ALT?>">
 							</div>
 						</div>
 					</div>

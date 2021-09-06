@@ -14,9 +14,9 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 ?>
 <?$APPLICATION->ShowHead();?>
 </head>
-
-<body>  
 <?$APPLICATION->ShowPanel();?>
+<body>  
+
 <header id="header" class="header">
       <div class="header-block">
         <div class="header-left">
@@ -178,4 +178,5 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 		"USE_EXT" => "N"
 	)
 );?>
+
 
