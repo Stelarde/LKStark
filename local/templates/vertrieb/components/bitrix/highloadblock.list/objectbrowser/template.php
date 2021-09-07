@@ -77,6 +77,7 @@ if (!empty($arResult['ERROR']))
 									</span>
 								</div>
 							</span>
+						<?elseif($col == 'UF_OBJECT_CONTACT_PERSON' || $col == 'UF_OBJECT_PERSON_PHONE' || $col == 'UF_OBJECT_PERSON_ADRESS'): continue?>
 						<?else: ?>
 							<span class="<?=$th_class?> v-th" colId="<?=htmlspecialcharsbx($col)?>" defaultSort="<?=$defaultSort?>">
 								<div class="reports-head-cell">
@@ -140,7 +141,7 @@ if (!empty($arResult['ERROR']))
 					<div class="v-td object-icon-block type-1 gray">
 						<div>
 							<div class="object-icon">
-								<img src="<?=SITE_TEMPLATE_PATH . $finalValue?>" alt="<?=IMAGE_ALT?>">
+								<img src="<?=$finalValue?>" alt="<?=IMAGE_ALT?>">
 							</div>
 						</div>
 					</div>
@@ -152,6 +153,7 @@ if (!empty($arResult['ERROR']))
 					<div class="v-td <?=$td_class?> cycles"><?=$finalValue?></div>
 				<?elseif($col == 'UF_OBJECT_EVENTS'): ?>
 					<div class="v-td <?=$td_class?> new-notification"><div><a href="#"><?=$finalValue?></a></div></div>
+				<?elseif($col == 'UF_OBJECT_CONTACT_PERSON' || $col == 'UF_OBJECT_PERSON_PHONE' || $col == 'UF_OBJECT_PERSON_ADRESS'): continue?>
 				<?else: ?>
 					<div class="v-td <?=$td_class?>"><?=$finalValue?></div>
 				<? endif; ?>
