@@ -164,7 +164,7 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 </header>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:menu",
-	"",
+	"left",
 	Array(
 		"ALLOW_MULTI_SELECT" => "N",
 		"CHILD_MENU_TYPE" => "left",

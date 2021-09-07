@@ -13,7 +13,7 @@
                                 <img id="object-img" src="<?=SITE_TEMPLATE_PATH?>/img/object-icons/type-1-gray.svg" alt="">
                             </div>
                         </div>
-                        <a href="#" class="btn-inline">Выбрать</a>
+                        <a href="#" id="icon-open" class="btn-inline">Выбрать</a>
                     </div>
                 </div>
                 <div class="input gray">
@@ -39,7 +39,7 @@
        </div>
 
        <!-- Выбор иконки -->
-       <!-- <div class="popup-add-object-select-icon">
+       <div class="popup-add-object-select-icon" style="display: none;">
            <p class="popup-add-object__title">Выбрать иконку</p>
            <form action="#" class="select-icon-form">
                 <div class="select-icon-form-list">
@@ -167,11 +167,13 @@
                     </label>
                 </div>
                 <div class="select-icon-form-btns">
-                    <button type="submit" class="btn-primary">Сохранить</button>
-                    <a href="#" class="btn-inline">Отменить</a>
+                    <button type="button" id="save-icon" class="btn-primary">Сохранить</button>
+                    <a href="#" id="icon-close" class="btn-inline">Отменить</a>
                 </div>
             </form>
-        </div> -->
+        </div>
+        </div>
+
     </div>
     <a href="javascript:;" class="closing-cross" data-fancybox-close>
         <svg>
@@ -180,9 +182,8 @@
     </a>
 </div> 
 <script>
-    BX.ready(function()
+BX.ready(function()
 {
-    console.log($('#object-img').attr('src'));
     $('.addObject').on('click',function (){
             var request = BX.ajax.runComponentAction('vedita:object.add', 'addObject',
                 {
@@ -209,6 +210,20 @@
                     location.reload();
                 }
             });
+    });
+    $('#icon-open').on('click',function(){
+        $('.popup-add-object-main').css('display','none');
+        $('.popup-add-object-select-icon').css('display','block');
+    });
+    $('#icon-close').on('click',function(){
+        $('.popup-add-object-main').css('display','block');
+        $('.popup-add-object-select-icon').css('display','none');
+    });
+    $('#save-icon').on('click',function(){
+        var src = $(":checked").parent().children('.object-icon-wrap').children('.object-icon').children('img').attr('src');
+        $('#object-img').attr('src' , src);
+        $('.popup-add-object-main').css('display','block');
+        $('.popup-add-object-select-icon').css('display','none');
     });
 });
 </script>
