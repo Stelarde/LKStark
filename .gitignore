@@ -21,7 +21,6 @@ restore.php
 *.log
 *.sql
 *.txt
-*.xml
 *.dt
 *.swp
 *.swo
