@@ -1,0 +1,55 @@
+<div id="popup-client" class="popup popup-client">
+    <div class="popup-grid">
+       <div class="popup-client-main">
+            <p class="popup-client__title">Добавить клиента</p>
+            <form action="#" class="popup-client-form">
+                <div class="popup-client-form-logo">
+                    <p class="popup-client-form-logo__title">Логотип</p>
+                    <div class="popup-client-form-logo-add">
+                        <div class="input-add-file">
+                            <input type="file" id="add-file-img1">
+                            <div></div>
+                            <label for="add-file-img1" class="btn-inline">Загрузить файл</label>
+                            <a href="javascript:;" class="btn-inline delete-img">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-client-form-block">
+                    <div class="input gray">
+                        <label for="#">Название организации</label>
+                        <input type="text" autocomplete="new-password">
+                    </div>
+                    <div class="input gray">
+                        <label for="#">Адрес</label>
+                        <input type="text" autocomplete="new-password">
+                    </div>
+                    <div class="input gray">
+                        <label for="#">Контактное лицо</label>
+                        <input type="text" autocomplete="new-password">
+                    </div>
+                    <div class="input gray">
+                        <label for="#">Телефон</label>
+                        <input type="tel" autocomplete="new-password"> 
+                    </div>
+                    <div class="textarea gray">
+                        <label for="#">Заметки</label>
+                        <textarea name=""></textarea>
+                    </div> 
+                    <div class="popup-client-form-btn">
+                        <button type="submit" class="btn-primary">Добавить</button> 
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <a href="javascript:;" class="closing-cross" data-fancybox-close>
+        <svg>
+            <use xlink:href="img/sprite.svg#closing-cross-icon"></use> 
+        </svg>
+    </a>
+</div> 
+
+<script>
+    const addFileBlocks = document.querySelectorAll('.input-add-file');
+    addFile(addFileBlocks);
+</script>

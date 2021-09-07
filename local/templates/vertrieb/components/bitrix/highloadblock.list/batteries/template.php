@@ -21,7 +21,7 @@ if (!empty($arResult['ERROR']))
 
                     <? $i = 0;
                     foreach(array_keys($arResult['tableColumns']) as $sPropName): ?>
-                        <?
+                        <? //var_dump($sPropName);
                         if ($sPropName === "ID")
                         {
                             ?>
@@ -36,60 +36,49 @@ if (!empty($arResult['ERROR']))
                             <?
                             continue;
                         }
-
                         // title
                         $arUserField = $arResult['fields'][$sPropName];
                         $title = $arUserField["LIST_COLUMN_LABEL"]? $arUserField["LIST_COLUMN_LABEL"]: $sPropName;
 
-                        // sorting
-                        $defaultSort = 'DESC';
-                        //$defaultSort = $sPropName['defaultSort'];
+                        if ($sPropName === "UF_ACTIVITY")
+                        {
+//                            echo "<pre>".print_r($arParams, true)."</pre>";die();
+                            //var_dump($arParams["SORT_ORDER"]);
+                            $sSortDirection = "down";
+                            $sNewSortDirection = "asc";
+                            if ($arParams["SORT_ORDER"] == "ASC")
+                            {
+                                $sSortDirection = "up";
+                                $sNewSortDirection = "desc";
+                            }
+
+                            global $APPLICATION;
+                            $sUrl = $APPLICATION->GetCurDir();
+                            ?>
+                            <div class="v-th <?= $sSortDirection?>"> <!-- up/down -->
+                                <div>
+                                    <a href="<?=$sUrl?>?sort=uf_activity&order=<?=$sNewSortDirection ?>">
+                                        <?=htmlspecialcharsex($title)?>
+                                        <svg>
+                                            <use xlink:href="<?=SITE_TEMPLATE_PATH ?>/img/sprite.svg#sort-arrow"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <?
+                            continue;
+                        }
 
                         ?>
                         <div class="v-th"><div><?=htmlspecialcharsex($title)?></div></div>
+                        <?if ($sPropName == "UF_RES_LEFT"):?><div class="v-th"></div><?endif;?>
+                        <?if ($sPropName == "UF_DATE_UNTIL"):?><div class="v-th"></div><?endif;?>
                 <? endforeach; ?>
                 </div>
             </div>
 
-
-            <?/*<div class="v-head">
-                <div class="v-tr grid-dashboard grid-column-gap-30">
-                    <div class="v-th"><div>
-                            <div class="v-checkbox all">
-                                <label>
-                                    <input type="checkbox">
-                                    <div></div>
-                                </label>
-                            </div>
-                        </div></div>
-                    <div class="v-th"><div>Специсполнение</div></div>
-                    <div class="v-th"><div>Номер батареи</div></div>
-                    <div class="v-th"><div>Название батареи</div></div>
-                    <div class="v-th"><div>Вид техники</div></div>
-                    <div class="v-th up"> <!-- up/down -->
-                        <div>
-                            <a href="javascript:;">
-                                Активность
-                                <svg>
-                                    <use xlink:href="../img/sprite.svg#sort-arrow"></use>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="v-th"><div>Полных циклов в сутки</div></div>
-                    <div class="v-th"><div>Остаточный ресурс</div></div>
-                    <div class="v-th"></div>
-                    <div class="v-th"><div>Аренда</div></div>
-                    <div class="v-th"></div>
-                    <div class="v-th"><div>События</div></div>
-                </div>
-            </div>*/?>
-
-
             <!-- data -->
-
             <div class="v-body">
-
                 <? foreach ($arResult['rows'] as $arBattery): ?>
                     <?
                         $iBattaryId = 0;
@@ -99,7 +88,7 @@ if (!empty($arResult['ERROR']))
                         <? $i = 0;
                         foreach(array_keys($arResult['tableColumns']) as $sBatteryProp): ?>
                             <?
-
+                            $sAdditionalClass = '';
                             $i++;
                             $sPropValue = $arBattery[$sBatteryProp];
 
@@ -124,34 +113,47 @@ if (!empty($arResult['ERROR']))
                             {
                                 $url = str_replace(
                                    array('#ID#', '#BLOCK_ID#'),
-                                   array($sPropValue, intval($arParams['BLOCK_ID'])),
+                                   array($iBattaryId, intval($arParams['BLOCK_ID'])),
                                    $arParams['DETAIL_URL']
                                );
                                $sPropValue = '<a href="'.htmlspecialcharsbx($url).'">'.$sPropValue.'</a>';
                             }
+                            elseif ($sBatteryProp === 'UF_SPECOPS')
+                            {
+                                $sSprite = '';
+                                if ($sPropValue == "снег")
+                                    $sSprite = "battery-icon-1";
+                                if ($sPropValue == "вода")
+                                    $sSprite = "battery-icon-2";
+                                if ($sSprite) :
+                                    ?>
+                                    <div class="v-td battery-icon type-1 gray">
+                                        <div>
+                                            <svg>
+                                                <use xlink:href="<?=SITE_TEMPLATE_PATH ?>/img/sprite.svg#<?= $sSprite;?>"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <?
+                                    continue;
+                                endif;
+                            }
+                            elseif ($sBatteryProp === 'UF_EVENT' && $sPropValue != 0)
+                            {
+                                ?><div class="v-td new-notification"><div><a href="#"><?=$sPropValue?></a></div></div><?
+                                continue;
+                            }
+
+                            if ($sBatteryProp === 'UF_ACTIVITY' || $sBatteryProp === 'UF_RES_LEFT')
+                                $sAdditionalClass .= 'percent ';
+
+                            if ($sBatteryProp === 'UF_CYCLES')
+                                $sAdditionalClass .= 'cycles ';
 
                             ?>
-                            <?/*
-
-                                <div class="v-td battery-icon type-1 gray">
-                                    <div>
-                                        <svg>
-                                            <use xlink:href="../img/sprite.svg#battery-icon-1"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="v-td"><div>Номер батареи</div></div>
-                                <div class="v-td"><div><a href="#">Название батареи</a></div></div>
-                                <div class="v-td"><div>Погрузчик</div></div>
-                                <div class="v-td percent"><div>54,55%</div></div>
-                                <div class="v-td cycles"><div>29</div></div>
-                                <div class="v-td percent"><div>58,32%</div></div>
-                                <div class="v-td"><div></div></div>
-                                <div class="v-td"><div>До <span>25.06.2025</span></div></div>
-                                <div class="v-td"><div></div></div>
-                                <div class="v-td new-notification"><div><a href="#">2</a></div></div>
-                            */?>
-                            <div class="v-td"><div><?=$sPropValue?></div></div>
+                            <div class="v-td <?=$sAdditionalClass;?>"><div><?=$sPropValue?></div></div>
+                            <?if ($sBatteryProp == "UF_RES_LEFT"):?><div class="v-td"><div></div></div><?endif;?>
+                            <?if ($sBatteryProp == "UF_DATE_UNTIL"):?><div class="v-td"><div></div></div><?endif;?>
                         <? endforeach; ?>
                     </div>
                 <? endforeach; ?>

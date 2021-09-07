@@ -279,3 +279,31 @@ function handleResize() {
     document.children[0].style.fontSize = '0.666667px';
   }
 }
+
+function addFile(addFileBlocks) {
+  if (addFileBlocks.length) {
+    addFileBlocks.forEach(function (addFileBlockCurrent) {
+      var addFileInput = addFileBlockCurrent.querySelector('input'),
+          addFileDiv = addFileBlockCurrent.querySelector('div'),
+          deleteFileBtn = addFileBlockCurrent.querySelector('.delete-img');
+      addFileInput.addEventListener('change', function () {
+        if (this.files[0]) {
+          var fr = new FileReader();
+          fr.addEventListener('load', function () {
+            addFileDiv.style.backgroundImage = 'url(' + fr.result + ')';
+          }, false);
+          fr.readAsDataURL(this.files[0]);
+
+          if (this.files.length) {
+            deleteFileBtn.style.display = 'block';
+          }
+        }
+      });
+      deleteFileBtn.addEventListener('click', function () {
+        addFileInput.value = '';
+        addFileDiv.style.backgroundImage = '';
+        deleteFileBtn.style.display = 'none';
+      });
+    });
+  }
+}

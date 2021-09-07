@@ -1,6 +1,8 @@
-<? if ( ! defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
-    die();
-}
+<?
+use Bitrix\Main\Application;
+if ( ! defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)    die();
+
+
 
 /** @var array $arParams */
 /** @var array $arResult */
@@ -193,6 +195,24 @@
                     </div>
                 </div>
             </div>
+            <?
+            $sSortField = "UF_ACTIVITY";
+            $sSortOrder = "DESC";
+
+            $request = Application::getInstance()->getContext()->getRequest();
+
+            $arSortOrderAllowed = ["ASC", "DESC"];
+            $arSortFieldAllowed = ["ID", "UF_NAME", "UF_DATE_UNTIL", "UF_TECH_TYPE", "UF_ACTIVITY", "UF_CYCLES", "UF_RES_LEFT"];
+
+            $sNewSortField = strtoupper($request->get("sort"));
+            $sNewSortOrder = strtoupper($request->get("order"));
+
+            if(in_array($sNewSortField, $arSortFieldAllowed))
+                $sSortField = $sNewSortField;
+            if(in_array($sNewSortOrder, $arSortOrderAllowed))
+                $sSortOrder = $sNewSortOrder;
+            ?>
+
 
             <? $APPLICATION->IncludeComponent(
                 'bitrix:highloadblock.list',
@@ -204,8 +224,8 @@
                     'FILTER_NAME'        => $arParams['FILTER_NAME'],
                     'PAGEN_ID'           => $arParams['PAGEN_ID'],
                     'ROWS_PER_PAGE'      => $arParams['ROWS_PER_PAGE'],
-                    'SORT_FIELD'         => $arParams['SORT_FIELD'],
-                    'SORT_ORDER'         => $arParams['SORT_ORDER'],
+                    'SORT_FIELD'         => $sSortField,
+                    'SORT_ORDER'         => $sSortOrder,
                     'COMPONENT_TEMPLATE' => $arParams['COMPONENT_TEMPLATE'],
                 ],
                 false
