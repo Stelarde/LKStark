@@ -1,11 +1,11 @@
 <?php
 $arUrlRewrite=array (
-  1 => 
+  3 => 
   array (
-    'CONDITION' => '#^/batteries/#',
+    'CONDITION' => '#^/obozrevatel-obektov/#',
     'RULE' => '',
     'ID' => 'vedita:highloadblock.complex',
-    'PATH' => '/batteries/index.php',
+    'PATH' => '/obozrevatel-obektov/index.php',
     'SORT' => 100,
   ),
   2 => 
@@ -14,6 +14,14 @@ $arUrlRewrite=array (
     'RULE' => '',
     'ID' => 'bitrix:news',
     'PATH' => '/documents/index.php',
+    'SORT' => 100,
+  ),
+  4 => 
+  array (
+    'CONDITION' => '#^/batteries/#',
+    'RULE' => '',
+    'ID' => 'vedita:highloadblock.complex',
+    'PATH' => '/batteries/index.php',
     'SORT' => 100,
   ),
   0 => 
