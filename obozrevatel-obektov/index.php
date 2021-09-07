@@ -57,10 +57,9 @@ $APPLICATION->SetTitle("Обозреватель объектов");
     </div>
 
         <h1>Обозреватель объектов</h1>
-
         <div class="grid-dashboard grid-column-12 grid-row-gap-30">
             <div class="grid-item fill">
-                <a data-fancybox data-type="ajax" data-src="<?=SITE_TEMPLATE_PATH?>/popups/popup-add-object.html" href="javascript:;"  class="btn-secondary popup-link">Добавить объект</a> 
+                <a data-fancybox data-type="ajax" data-src="<?=SITE_TEMPLATE_PATH?>/popups/popup-add-object.php" href="javascript:;"  class="btn-secondary popup-link">Добавить объект</a> 
             </div>
             <div class="grid-item fill grid-dashboard grid-row-gap-15 subtitle-block">
                 <div class="grid-item grid-dashboard grid-column-12 grid-column-gap-30 actions-wrap">
