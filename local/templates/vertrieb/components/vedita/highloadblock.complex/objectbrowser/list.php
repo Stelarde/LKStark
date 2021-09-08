@@ -6,7 +6,11 @@
 /** @var array $arResult */
 /** @global CMain $APPLICATION */
 ?>
-
+<?
+global $USER;
+$user_id = $USER->GetID();
+$GLOBALS['arFilter'] = ['UF_OBJECT_USER_ID' => $user_id];
+?>
 <? $APPLICATION->IncludeComponent(
     'bitrix:highloadblock.list',
     'objectbrowser',

@@ -93,74 +93,75 @@ if (!empty($arResult['ERROR']))
 			<!-- data -->
 			<div class="v-body">		
 			<? foreach ($arResult['rows'] as $row): ?>
-				<div class="v-tr grid-dashboard grid-column-gap-30 reports-list-item">
-				<? $i = 0; foreach(array_keys($arResult['tableColumns']) as $col): ?>
-				<?
-				$i++;
-				if ($i == 1)
-					{
-						$td_class = 'reports-first-column';
-					}
-				else if ($i == count($arResult['viewColumns']))
-					{
-						$td_class = 'reports-last-column';
-					}
-				else
-					{
-						$td_class = '';
-					}
-				//if (CReport::isColumnPercentable($col))
-				if (false) // numeric rows
-					{
-						$td_class .= ' reports-numeric-column';
-					}
-				$finalValue = $row[$col];
-				if ($col === 'UF_OBJECT_NAME' && !empty($arParams['DETAIL_URL']))
-					{
-						$url = str_replace(
-							array('#ID#', '#BLOCK_ID#'),
-							array($finalValue, intval($arParams['BLOCK_ID'])),
-							$arParams['DETAIL_URL']
-						);
+					<div class="v-tr grid-dashboard grid-column-gap-30 reports-list-item">
+					<? $i = 0; foreach(array_keys($arResult['tableColumns']) as $col): ?>
+					<?
+					$i++;
+					if ($i == 1)
+						{
+							$td_class = 'reports-first-column';
+						}
+					else if ($i == count($arResult['viewColumns']))
+						{
+							$td_class = 'reports-last-column';
+						}
+					else
+						{
+							$td_class = '';
+						}
+					//if (CReport::isColumnPercentable($col))
+					if (false) // numeric rows
+						{
+							$td_class .= ' reports-numeric-column';
+						}
+					$finalValue = $row[$col];
+					if ($col === 'UF_OBJECT_NAME' && !empty($arParams['DETAIL_URL']))
+						{
+							$url = str_replace(
+								array('#ID#', '#BLOCK_ID#'),
+								array($finalValue, intval($arParams['BLOCK_ID'])),
+								$arParams['DETAIL_URL']
+							);
 
-						$finalValue = '<a href="'.htmlspecialcharsbx($url).'">'.$finalValue.'</a>';
-					}
-				?>
-				<? if($col == 'ID'): ?>
-					<div class="v-td">
-						<div>
-							<div class="v-checkbox default">
-								<label>
-									<input type="checkbox">
-									<div></div>
-								</label>
+							$finalValue = '<a href="'.htmlspecialcharsbx($url).'">'.$finalValue.'</a>';
+						}
+					?>
+					<? if($col == 'ID'): ?>
+						<div class="v-td">
+							<div>
+								<div class="v-checkbox default">
+									<label>
+										<input type="checkbox">
+										<div></div>
+									</label>
+								</div>
 							</div>
 						</div>
-					</div>
-				<?elseif($col == 'UF_OBJECT_SRC'): ?>
-					<div class="v-td object-icon-block type-1 gray">
-						<div>
-							<div class="object-icon">
-								<img src="<?=$finalValue?>" alt="<?=IMAGE_ALT?>">
+					<?elseif($col == 'UF_OBJECT_SRC'): ?>
+						<div class="v-td object-icon-block type-1 gray">
+							<div>
+								<div class="object-icon">
+									<img src="<?=$finalValue?>" alt="<?=IMAGE_ALT?>">
+								</div>
 							</div>
 						</div>
+					<? elseif($col == 'UF_OBJECT_BATTERY_AMOUNT'):  ?>
+						<div class="v-td <?=$td_class?>"><a href="/batteries/"><?=$finalValue?></a></div>
+					<?elseif($col == 'UF_OBJECT_BATTERY_ACTIVE' || $col == 'UF_OBJECT_BATTERY_REMAINIG_RESOURCE'): ?>
+						<div class="v-td <?=$td_class?> percent"><?=$finalValue?>%</div>
+					<?elseif($col == 'UF_OBJECT_BATTERY_CYCLES'): ?>
+						<div class="v-td <?=$td_class?> cycles"><?=$finalValue?></div>
+					<?elseif($col == 'UF_OBJECT_EVENTS'): ?>
+						<div class="v-td <?=$td_class?> new-notification"><div><a href="#"><?=$finalValue?></a></div></div>
+					<?elseif($col == 'UF_OBJECT_CONTACT_PERSON' || $col == 'UF_OBJECT_PERSON_PHONE' || $col == 'UF_OBJECT_PERSON_ADRESS'): continue?>
+					<?else: ?>
+						<div class="v-td <?=$td_class?>"><?=$finalValue?></div>
+					<? endif; ?>
+					<? endforeach; ?>
 					</div>
-				<? elseif($col == 'UF_OBJECT_BATTERY_AMOUNT'):  ?>
-					<div class="v-td <?=$td_class?>"><a href="/batteries/"><?=$finalValue?></a></div>
-				<?elseif($col == 'UF_OBJECT_BATTERY_ACTIVE' || $col == 'UF_OBJECT_BATTERY_REMAINIG_RESOURCE'): ?>
-					<div class="v-td <?=$td_class?> percent"><?=$finalValue?>%</div>
-				<?elseif($col == 'UF_OBJECT_BATTERY_CYCLES'): ?>
-					<div class="v-td <?=$td_class?> cycles"><?=$finalValue?></div>
-				<?elseif($col == 'UF_OBJECT_EVENTS'): ?>
-					<div class="v-td <?=$td_class?> new-notification"><div><a href="#"><?=$finalValue?></a></div></div>
-				<?elseif($col == 'UF_OBJECT_CONTACT_PERSON' || $col == 'UF_OBJECT_PERSON_PHONE' || $col == 'UF_OBJECT_PERSON_ADRESS'): continue?>
-				<?else: ?>
-					<div class="v-td <?=$td_class?>"><?=$finalValue?></div>
-				<? endif; ?>
+					
 				<? endforeach; ?>
 				</div>
-			<? endforeach; ?>
-			</div>
 			<?php
 			if ($arParams['ROWS_PER_PAGE'] > 0):
 				$APPLICATION->IncludeComponent(
