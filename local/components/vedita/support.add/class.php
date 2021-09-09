@@ -3,7 +3,7 @@
 use Bitrix\Main\Engine\Contract\Controllerable;
 use lib\HighloadblockObject\HighloadblockObject;
 
-class CDemoSqr extends CBitrixComponent implements Controllerable
+class Support extends CBitrixComponent implements Controllerable
 {
     public function configureActions()
     {

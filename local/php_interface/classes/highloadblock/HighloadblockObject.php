@@ -56,4 +56,30 @@ class HighloadblockObject
 
         return ['result' => false];
     }
+    public static function getNotifications(int $HLBlockID): array
+    {
+        global $USER;
+        $arNotifications = [];
+        if ($USER->IsAuthorized())
+        {
+            $userId = $USER->GetID();
+            if (is_numeric($userId) AND $userId > 0)
+            {
+                $params = 
+                [
+                    'select' => ['*'],                
+                    'filter' => ['UF_USER_ID' => $userId],     
+                ];
+                  
+                $hlblock = new HighloadblockMethod($HLBlockID);
+                $rsNotifications = $hlblock->getList($params);
+                while ($arNotification = $rsNotifications->Fetch())
+                {
+                    $arNotifications[] = $arNotification;
+                }
+                return $arNotifications;
+            }
+        }
+        return $arNotifications;
+    }
 }

@@ -37,104 +37,11 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
             </div>
         </div>
         <div class="header-right">
-              <div class="header-notifications">
-                  <a href="javascript:;" class="header-notifications-btn">
-                        <svg>
-                            <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#notification-icon"></use>
-                        </svg>
-                      <span>3</span>
-                  </a>
-                  <div class="overlay"></div>
-                  <div class="header-notifications-popup">
-                      <div class="header-notifications-popup-wrap">
-                        <p class="header-notifications__title">Уведомления</p>
-                        <div class="header-notifications-list">
-                            <ul>
-                                <li>
-                                    <div class="notifications-desc">
-                                        <a href="#">АКБ №12321312222</a>
-                                        <p>Длительное время простоя АКБ</p>
-                                    </div>
-                                    <div class="notifications-date">
-                                        <p>11.06.2020</p>
-                                        <p>20:33</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="notifications-desc">
-                                        <a href="#">АКБ №12321312222</a>
-                                        <p>Длительное время простоя АКБ</p>
-                                    </div>
-                                    <div class="notifications-date">
-                                        <p>11.06.2020</p>
-                                        <p>20:33</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="notifications-desc">
-                                        <a href="#">АКБ №12321312222</a>
-                                        <p>Длительное время простоя АКБ</p>
-                                    </div>
-                                    <div class="notifications-date">
-                                        <p>11.06.2020</p>
-                                        <p>20:33</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="notifications-desc">
-                                        <a href="#">АКБ №12321312222</a>
-                                        <p>Длительное время простоя АКБ</p>
-                                    </div>
-                                    <div class="notifications-date">
-                                        <p>11.06.2020</p>
-                                        <p>20:33</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="notifications-desc">
-                                        <a href="#">АКБ №12321312222</a>
-                                        <p>Длительное время простоя АКБ</p>
-                                    </div>
-                                    <div class="notifications-date">
-                                        <p>11.06.2020</p>
-                                        <p>20:33</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="notifications-desc">
-                                        <a href="#">АКБ №12321312222</a>
-                                        <p>Длительное время простоя АКБ</p>
-                                    </div>
-                                    <div class="notifications-date">
-                                        <p>11.06.2020</p>
-                                        <p>20:33</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="notifications-desc">
-                                        <a href="#">АКБ №12321312222</a>
-                                        <p>Длительное время простоя АКБ</p>
-                                    </div>
-                                    <div class="notifications-date">
-                                        <p>11.06.2020</p>
-                                        <p>20:33</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="notifications-desc">
-                                        <a href="#">АКБ №12321312222</a>
-                                        <p>Длительное время простоя АКБ</p>
-                                    </div>
-                                    <div class="notifications-date">
-                                        <p>11.06.2020</p>
-                                        <p>20:33</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                      </div>
-                  </div>
-              </div>
+        <?$APPLICATION->IncludeComponent(
+	        "vedita:notifications.get",
+	        "",
+            Array()
+        );?>
               <div class="header-info v-dropdown">
                   <a href="javascript:;" class="header-info-btn v-dropdown-btn">
                     <div class="header-info-photo">

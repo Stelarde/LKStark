@@ -12,6 +12,9 @@ $(document).ready(function() {
         {
             if (response['data']['result'])
             {
+                $('#theme').val('');
+                $('#message').val('');
+                reset($('#file'));
                 console.log(response);
             }
             else 
@@ -22,3 +25,8 @@ $(document).ready(function() {
         });
     });
 });
+
+window.reset = function (e) {
+    e.wrap('<form>').closest('form').get(0).reset();
+    e.unwrap();
+}
