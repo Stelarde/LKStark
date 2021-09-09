@@ -73,8 +73,8 @@ class ChangeProfile extends \CBitrixComponent implements Controllerable
     }
     public function checkValidate(array $data) : bool
     {
-        if(empty($data['email']) or empty($data['last_name']) or empty($data['name']) or empty($data['personal_city']) or empty($data['personal_phone']) or empty($data['second_name']))
-            return false;
+        // if(empty($data['email']) or empty($data['last_name']) or empty($data['name']) or empty($data['personal_city']) or empty($data['personal_phone']) or empty($data['second_name']))
+        //     return false;
         if(!is_numeric($data['personal_phone']) or strlen($data["personal_phone"]) < 11 or strlen($data["personal_phone"]) > 18)
             return false;
         return true;
@@ -89,8 +89,31 @@ class ChangeProfile extends \CBitrixComponent implements Controllerable
             'result' => $URL
         ];
     }
+    public function getUserSetting() : array
+    {
+        global $USER;
+        $user_id = $USER->GetID();
+        $rsUser = CUser::GetByID($user_id)->Fetch();
+        return $rsUser;
+    }
+    public function getUserImage() : string
+    {
+        $user = $this->getUserSetting();
+        if(!empty($user['PERSONAL_PHOTO']))
+        {
+            $file = CFile::ResizeImageGet($user['PERSONAL_PHOTO'], array('width'=>53, 'height'=>53), BX_RESIZE_IMAGE_PROPORTIONAL, true); 
+            $URL = $file['src'];
+            return $URL;
+        }
+        else
+        {
+            return " ";
+        }
+    }
     public function executeComponent()
     {
+        $this->arResult["user"] = $this->getUserSetting();
+        $this->arResult["user_image"] = $this->getUserImage();
         $this->includeComponentTemplate();
     }
 }

@@ -9,34 +9,34 @@
                     <form id="form-group" class="popup-settings-profile-form" enctype="multipart/form-data" method="POST">
                     <div class="popup-settings-profile-img-wrap">
                         <div class="popup-settings-profile-img">
-                            <img id="person_image" src="" alt="">
+                            <img id="person_image" src="<?=$arResult["user_image"]?>" alt="">
                         </div> 
                         <label for="files" class="btn-inline">Загрузить</label>
                         <input id="files"  name="userfile" style="display: none;"  type="file">
                     </div>
                     <div class="input gray">
                         <label for="#">Фамилия</label>
-                        <input id="last_name" name="last_name" type="text" autocomplete="new-password">
+                        <input id="last_name" value="<?=$arResult["user"]['LAST_NAME']?>" name="last_name" type="text" autocomplete="new-password">
                     </div>
                     <div class="input gray">
                         <label for="#">Имя</label>
-                        <input id="name" name="name" type="text" autocomplete="new-password">
+                        <input id="name" name="name" value="<?=$arResult["user"]['NAME']?>" type="text" autocomplete="new-password">
                     </div>
                     <div class="input gray">
                         <label for="#">Отчество</label>
-                        <input id="second_name" name="second_name" type="text" autocomplete="new-password">
+                        <input id="second_name" name="second_name" value="<?=$arResult["user"]['SECOND_NAME']?>" type="text" autocomplete="new-password">
                     </div>
                     <div class="input gray">
                         <label for="#">Город</label>
-                        <input id="personal_city" name="personal_city" type="text" autocomplete="new-password">
+                        <input id="personal_city" name="personal_city" value="<?=$arResult["user"]['PERSONAL_CITY']?>" type="text" autocomplete="new-password">
                     </div>
                     <div class="input gray">
                         <label for="#">Телефон</label>
-                        <input id="personal_phone" name="personal_phone" type="text" autocomplete="new-password">
+                        <input id="personal_phone" name="personal_phone" value="<?=$arResult["user"]['PERSONAL_PHONE']?>" type="text" autocomplete="new-password">
                     </div>
                     <div class="input gray">
                         <label for="#">E-mail</label>
-                        <input id="email"  name="email" type="text" autocomplete="new-password">
+                        <input id="email"  name="email" type="text" value="<?=$arResult["user"]['EMAIL']?>" autocomplete="new-password">
                     </div>
 
                     <div class="popup-settings-profile-form-btns">
@@ -81,9 +81,10 @@ BX.ready(function()
 
             request.then(function(response)
             {
-                if(response["data"]["status"] == false)
+                console.log(response);
+                if(response["data"]["data"]["status"] == false)
                 {
-                    alert(response["data"]["answer"]);
+                    alert(response["data"]["data"]["answer"]);
                 }
                 else
                 {

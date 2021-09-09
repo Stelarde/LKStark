@@ -155,7 +155,12 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
                   <div class="header-info-menu v-dropdown-options">
                       <ul>
                           <li><a href="/settings-profile">Настройка аккаунта</a></li>
-                          <li><a href="/index.php?logout=yes">Выйти</a></li>
+                          <li><a href="<?=$APPLICATION->GetCurPageParam("logout=yes&".bitrix_sessid_get(), array(
+                                  "login",
+                                 "logout",
+                                 "register",
+                                 "forgot_password",
+                                 "change_password"));?>">Выйти</a></li>
                       </ul>
                   </div>
               </div>
