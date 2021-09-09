@@ -65,6 +65,7 @@ if ( ! defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)    die();
         <div class="grid-dashboard grid-column-12 grid-row-gap-30">
             <div class="grid-item fill grid-dashboard grid-row-gap-15 subtitle-block">
                 <div class="grid-item grid-dashboard grid-column-12 grid-column-gap-30 label-filters-wrap">
+                    <?/*
                     <div class="label-filters">
                         <div>
                             <span>ООО МОСГОР</span>
@@ -115,6 +116,7 @@ if ( ! defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)    die();
                             <a href="javascript:;" class="label-filters-cross"></a>
                         </div>
                     </div>
+*/?>
                 </div>
                 <div class="grid-item grid-dashboard grid-column-12 grid-column-gap-30 actions-wrap">
                     <div class="grid-item actions-select">
