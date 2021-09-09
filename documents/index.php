@@ -3,22 +3,6 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Документация");
 ?><main class="main">
 <div class="main-internal">
-	<div id="submenu" class="submenu">
-		<div class="submenu-block">
- <nav>
-			<ul class="submenu-list grid-dashboard grid-column-gap-30">
-				<li class="submenu-item"> <a href="#"> <span class="submenu-item-icon"> </span>
-				Главная </a> </li>
-				<li class="submenu-item active"> <a href="#"> <span class="submenu-item-icon"> </span>
-				Служба поддержки </a> </li>
-				<li class="submenu-item"> <a href="#"> <span class="submenu-item-icon"> </span>
-				История эксплуатации </a> </li>
-				<li class="submenu-item"> <a href="#"> <span class="submenu-item-icon"> </span>
-				Скачать отчёт в PDF </a> </li>
-			</ul>
- </nav>
-		</div>
-	</div>
 	 <?$APPLICATION->IncludeComponent(
 	"bitrix:news",
 	"",

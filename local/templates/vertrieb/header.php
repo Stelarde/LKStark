@@ -61,8 +61,13 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
                   </a>
                   <div class="header-info-menu v-dropdown-options">
                       <ul>
-                          <li><a href="/settings-profile.html">Настройка аккаунта</a></li>
-                          <li><a href="#">Выйти</a></li>
+                          <li><a href="/settings-profile">Настройка аккаунта</a></li>
+                          <li><a href="<?=$APPLICATION->GetCurPageParam("logout=yes&".bitrix_sessid_get(), array(
+                                  "login",
+                                 "logout",
+                                 "register",
+                                 "forgot_password",
+                                 "change_password"));?>">Выйти</a></li>
                       </ul>
                   </div>
               </div>
@@ -85,4 +90,5 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 		"USE_EXT" => "N"
 	)
 );?>
+ 
 

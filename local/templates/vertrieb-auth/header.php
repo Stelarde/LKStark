@@ -19,9 +19,6 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 </head>
 
 <body> 
-<div class="panel">
-<?$APPLICATION->ShowPanel();?>
-</div> 
 <header id="header-login" class="header-login">
     <div class="container">
         <div class="header-login-block">
