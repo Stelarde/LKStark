@@ -22,8 +22,8 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Клиенты", 
-		"/clients/", 
+		"Обращения", 
+		"/obrashcheniya/", 
 		Array(), 
 		Array(), 
 		"" 
