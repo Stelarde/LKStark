@@ -21,7 +21,7 @@
 							</a>
 						</li>
 					<?else:?>
-						<li>
+						<li class="submenu-item">
 							<a href="<?=$arItem["LINK"]?>">
 								<span class="submenu-item-icon">
 									<svg>

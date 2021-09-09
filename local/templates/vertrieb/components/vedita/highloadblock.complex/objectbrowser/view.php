@@ -9,7 +9,7 @@
 
 <? $APPLICATION->IncludeComponent(
     'bitrix:highloadblock.view',
-    '',
+    'objectbrowser',
     [
         'BLOCK_ID'           => $arParams['BLOCK_ID'],
         'CHECK_PERMISSIONS'  => $arParams['CHECK_PERMISSIONS'],

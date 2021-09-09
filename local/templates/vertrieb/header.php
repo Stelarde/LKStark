@@ -14,7 +14,7 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 ?>
 <?$APPLICATION->ShowHead();?>
 </head>
-<?$APPLICATION->ShowPanel();?>
+
 <body>  
 
 <header id="header" class="header">
@@ -61,7 +61,7 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
                   </a>
                   <div class="header-info-menu v-dropdown-options">
                       <ul>
-                          <li><a href="/settings-profile">Настройка аккаунта</a></li>
+                          <li><a href="/settings-profile/">Настройка аккаунта</a></li>
                           <li><a href="<?=$APPLICATION->GetCurPageParam("logout=yes&".bitrix_sessid_get(), array(
                                   "login",
                                  "logout",
