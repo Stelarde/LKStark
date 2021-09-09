@@ -74,6 +74,13 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
         </div>
       </div>
 </header>
+<?
+$sMenuType = "left";
+global $USER;
+$arGroups = $USER->GetUserGroupArray();
+if (in_array(DEALER_GROUP, $arGroups))
+    $sMenuType = "leftdealer";
+?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:menu",
 	"left",
@@ -86,7 +93,7 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 		"MENU_CACHE_TIME" => "3600",
 		"MENU_CACHE_TYPE" => "N",
 		"MENU_CACHE_USE_GROUPS" => "Y",
-		"ROOT_MENU_TYPE" => "left",
+		"ROOT_MENU_TYPE" => $sMenuType,
 		"USE_EXT" => "N"
 	)
 );?>

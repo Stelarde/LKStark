@@ -1,0 +1,32 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Список батарей", 
+		"/batteries/", 
+		Array(), 
+		Array("src"=>"/bitrix/templates/.default/img/sprite.svg#sidebar-menu-battery-icon"), 
+		"" 
+	),
+    Array(
+        "Клиенты",
+        "/clients/",
+        Array(),
+        Array("src"=>"/bitrix/templates/.default/img/sprite.svg#sidebar-menu-clients-icon"),
+        ""
+    ),
+    Array(
+        "Календарь",
+        "/calendar/",
+        Array(),
+        Array("src"=>"/bitrix/templates/.default/img/sprite.svg#sidebar-menu-calendar-icon"),
+        ""
+    ),
+	Array(
+		"Документация", 
+		"/documents/", 
+		Array(), 
+		Array("src"=>"/bitrix/templates/.default/img/sprite.svg#sidebar-menu-docs-icon"), 
+		"" 
+	)
+);
+?>

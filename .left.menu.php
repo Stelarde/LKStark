@@ -4,35 +4,21 @@ $aMenuLinks = Array(
 		"Обозреватель объектов", 
 		"/obozrevatel-obektov/", 
 		Array(), 
-		Array("src"=>SITE_TEMPLATE_PATH . "/img/sprite.svg#submenu-home-icon"), 
+		Array("src"=>"/local/templates/vertrieb/img/sprite.svg#submenu-home-icon"),
 		"" 
 	),
 	Array(
 		"Список батарей", 
 		"/batteries/", 
 		Array(), 
-		Array("src"=>SITE_TEMPLATE_PATH . "/img/sprite.svg#sidebar-menu-battery-icon"), 
+		Array("src"=>"/local/templates/vertrieb/img/sprite.svg#sidebar-menu-battery-icon"),
 		"" 
 	),
 	Array(
 		"Документация", 
 		"/documents/", 
 		Array(), 
-		Array("src"=>SITE_TEMPLATE_PATH . "/img/sprite.svg#sidebar-menu-docs-icon"), 
-		"" 
-	),
-	Array(
-		"Обращения", 
-		"/obrashcheniya/", 
-		Array(), 
-		Array("src"=>SITE_TEMPLATE_PATH . "/img/sprite.svg#sidebar-menu-appeals-icon"), 
-		"" 
-	),
-	Array(
-		"Клиенты", 
-		"/clients/", 
-		Array(), 
-		Array("src"=>SITE_TEMPLATE_PATH . "/img/sprite.svg#sidebar-menu-clients-icon"), 
+		Array("src"=>"/local/templates/vertrieb/img/sprite.svg#sidebar-menu-docs-icon"),
 		"" 
 	)
 );
