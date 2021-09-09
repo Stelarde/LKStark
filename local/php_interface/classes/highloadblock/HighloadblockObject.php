@@ -83,4 +83,27 @@ class HighloadblockObject
         }
         return $arNotifications;
     }
+
+    public static function updateCheckNotifications(int $HLBlockID): bool
+    {
+        global $USER;
+        if ($USER->IsAuthorized())
+        {
+            $userId = $USER->GetID();
+            if (is_numeric($userId) AND $userId > 0)
+            {
+                $arNotifications = self::getNotifications($HLBlockID);
+                if (!empty($arNotifications))
+                {
+                    $hlblock = new HighloadblockMethod($HLBlockID);
+                    foreach($arNotifications as $arNotification)
+                    {
+                        $hlblock->update($arNotification['ID'], ['UF_CHECK' => true]);
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

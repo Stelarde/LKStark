@@ -16,7 +16,7 @@
                     <label for="message">Сообщение</label> <textarea name="message" id="message" placeholder="Ваше сообщение"></textarea>
 				</div>
 				<div class="attath-file">
-					<label for="file">ПРИКРЕПИТЬ ФАЙЛЫ</label> <input name="support-files" type="file" id="file">
+					<label for="file">ПРИКРЕПИТЬ ФАЙЛ</label> <input name="support-files" type="file" id="file" style="display: none;">
 				</div>
                 <button type="button" id="send-message" class="btn-primary send-request-btn">Отправить</button>
 			</form>

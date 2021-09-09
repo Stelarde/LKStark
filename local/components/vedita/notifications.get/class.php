@@ -13,6 +13,11 @@ class CDemoSqr extends CBitrixComponent implements Controllerable
             [
                 'prefilters' => [],
                 'postfilters' => []
+            ],
+            'ajaxUpdateEvent' =>
+            [
+                'prefilters' => [],
+                'postfilters' => []
             ]
         ];
     }
@@ -28,8 +33,14 @@ class CDemoSqr extends CBitrixComponent implements Controllerable
         if (!empty($arNotifications))
         {
             $html = '<ul>';
+            $quantity = 0;
             foreach ($arNotifications as $arNotification)
             {
+                if ($arNotification['UF_CHECK'] == false)
+                {
+                    $quantity += 1;
+                }
+
                 $objDateTime = new DateTime($arNotification['UF_DATE_TIME']);
 
                 $html .= '<li><div class="notifications-desc">';
@@ -47,10 +58,16 @@ class CDemoSqr extends CBitrixComponent implements Controllerable
             return 
             [
                 'html' => $html,
-                'quantity' => count($arNotifications),
+                'quantity' => $quantity,
                 'result' => true
             ];
         }
         return ['result' => false];
+    }
+
+    public function ajaxUpdateEventAction()
+    {
+        $bNotification = HighloadblockObject::updateCheckNotifications(HL_BLOCK_ID_NOTIFICATIONS);
+        return ['result' => $bNotification];
     }
 }
