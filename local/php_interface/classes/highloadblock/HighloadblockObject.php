@@ -83,4 +83,5 @@ class HighloadblockObject
         }
         return $arNotifications;
     }
+    
 }
