@@ -4,55 +4,22 @@ $APPLICATION->SetTitle("Title");
 ?>
 <main class="main">
     <div class="main-internal">
-        <div id="submenu" class="submenu">
-    <div class="submenu-block">
-        <nav>
-            <ul class="submenu-list grid-dashboard grid-column-gap-30">
-                <li class="submenu-item">
-                    <a href="#">
-                        <span class="submenu-item-icon">
-                            <svg>
-                                <use xlink:href="../img/sprite.svg#submenu-home-icon"></use>
-                            </svg>
-                        </span>
-                        <span>Главная</span>
-                    </a>
-                </li>
-                <li class="submenu-item active">
-                    <a href="#">
-                        <span class="submenu-item-icon">
-                            <svg>
-                                <use xlink:href="../img/sprite.svg#submenu-support-icon"></use>
-                            </svg>
-                        </span>
-                        <span>Служба поддержки</span>
-                    </a>
-                </li>
-                <li class="submenu-item">
-                    <a href="#">
-                        <span class="submenu-item-icon">
-                            <svg>
-                                <use xlink:href="../img/sprite.svg#submenu-history-icon"></use>
-                            </svg>
-                        </span>
-                        <span>История эксплуатации</span>
-                    </a>
-                </li>
-                <li class="submenu-item">
-                    <a href="#">
-                        <span class="submenu-item-icon">
-                            <svg>
-                                <use xlink:href="../img/sprite.svg#submenu-report-icon"></use>
-                            </svg>
-                        </span>
-                        <span>Скачать отчёт в PDF</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</div>
-    
+    <?$APPLICATION->IncludeComponent(
+	"bitrix:menu",
+	"top",
+	Array(
+		"ALLOW_MULTI_SELECT" => "N",
+		"CHILD_MENU_TYPE" => "top",
+		"DELAY" => "N",
+		"MAX_LEVEL" => "1",
+		"MENU_CACHE_GET_VARS" => array(""),
+		"MENU_CACHE_TIME" => "3600",
+		"MENU_CACHE_TYPE" => "N",
+		"MENU_CACHE_USE_GROUPS" => "Y",
+		"ROOT_MENU_TYPE" => "top",
+		"USE_EXT" => "N"
+	)
+);?>
         <h1>Клиенты</h1>
     
         <div class="grid-dashboard grid-column-12 grid-row-gap-30">
@@ -144,121 +111,6 @@ $APPLICATION->SetTitle("Title");
             </div>
         </div>
         <div class="v-body">
-            <div class="v-tr grid-dashboard grid-column-gap-30">
-                <div class="v-td">
-                    <div>
-                        <div class="v-checkbox default">
-                            <label>
-                                <input type="checkbox">
-                                <div></div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="v-td ">
-                    <div>
-                        <div class="client-logo">
-                            <img src="../../img/client-logo.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="v-td"><div>ООО «Склад.ру»</div></div>
-                <div class="v-td"><div><a href="#">47</a></div></div>
-                <div class="v-td"><div><a href="#">47</a></div></div>
-                <div class="v-td new-notification"><div><a href="#">2</a></div></div>
-            </div>
-            <div class="v-tr grid-dashboard grid-column-gap-30">
-                <div class="v-td">
-                    <div>
-                        <div class="v-checkbox default">
-                            <label>
-                                <input type="checkbox">
-                                <div></div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="v-td ">
-                    <div>
-                        <div class="client-logo">
-                            <img src="../../img/client-logo.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="v-td"><div>ООО «Склад.ру»</div></div>
-                <div class="v-td"><div><a href="#">47</a></div></div>
-                <div class="v-td"><div><a href="#">47</a></div></div>
-                <div class="v-td new-notification"><div><a href="#">4</a></div></div>
-            </div>
-            <div class="v-tr grid-dashboard grid-column-gap-30">
-                <div class="v-td">
-                    <div>
-                        <div class="v-checkbox default">
-                            <label>
-                                <input type="checkbox">
-                                <div></div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="v-td ">
-                    <div>
-                        <div class="client-logo">
-                            <img src="../../img/client-logo.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="v-td"><div>ООО «Склад.ру»</div></div>
-                <div class="v-td"><div><a href="#">47</a></div></div>
-                <div class="v-td"><div><a href="#">47</a></div></div>
-                <div class="v-td new-notification"><div><a href="#">12</a></div></div>
-            </div>
-            <div class="v-tr grid-dashboard grid-column-gap-30">
-                <div class="v-td">
-                    <div>
-                        <div class="v-checkbox default">
-                            <label>
-                                <input type="checkbox">
-                                <div></div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="v-td ">
-                    <div>
-                        <div class="client-logo">
-                            <img src="../../img/client-logo.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="v-td"><div>ООО «Склад.ру»</div></div>
-                <div class="v-td"><div><a href="#">47</a></div></div>
-                <div class="v-td"><div><a href="#">47</a></div></div>
-                <div class="v-td new-notification"><div><a href="#">2</a></div></div>
-            </div>
-            <div class="v-tr grid-dashboard grid-column-gap-30">
-                <div class="v-td">
-                    <div>
-                        <div class="v-checkbox default">
-                            <label>
-                                <input type="checkbox">
-                                <div></div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="v-td ">
-                    <div>
-                        <div class="client-logo">
-                            <img src="../../img/client-logo.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="v-td"><div>ООО «Склад.ру»</div></div>
-                <div class="v-td"><div><a href="#">47</a></div></div>
-                <div class="v-td"><div><a href="#">47</a></div></div>
-                <div class="v-td new-notification"><div>-</div></div>
-            </div>
             <div class="v-tr grid-dashboard grid-column-gap-30">
                 <div class="v-td">
                     <div>

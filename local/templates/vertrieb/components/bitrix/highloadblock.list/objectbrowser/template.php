@@ -117,16 +117,17 @@ if (!empty($arResult['ERROR']))
 					$finalValue = $row[$col];
 					if ($col === 'UF_OBJECT_NAME' && !empty($arParams['DETAIL_URL']))
 						{
-							$url = str_replace(
-								array('#ID#', '#BLOCK_ID#'),
-								array($finalValue, intval($arParams['BLOCK_ID'])),
-								$arParams['DETAIL_URL']
-							);
-
 							$finalValue = '<a href="'.htmlspecialcharsbx($url).'">'.$finalValue.'</a>';
 						}
 					?>
 					<? if($col == 'ID'): ?>
+						<?php
+						$url = str_replace(
+							array('#ID#', '#BLOCK_ID#'),
+							array($finalValue, intval($arParams['BLOCK_ID'])),
+							$arParams['DETAIL_URL']
+						);
+						?>
 						<div class="v-td">
 							<div>
 								<div class="v-checkbox default">
