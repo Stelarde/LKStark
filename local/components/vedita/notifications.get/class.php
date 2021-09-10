@@ -1,7 +1,7 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 use Bitrix\Main\Engine\Contract\Controllerable;
-use lib\HighloadblockObject\HighloadblockObject;
+use vedita\HighloadblockNotification;
 
 class CDemoSqr extends CBitrixComponent implements Controllerable
 {
@@ -10,6 +10,11 @@ class CDemoSqr extends CBitrixComponent implements Controllerable
         return 
         [
             'ajaxAddEvent' => 
+            [
+                'prefilters' => [],
+                'postfilters' => []
+            ],
+            'ajaxUpdateEvent' =>
             [
                 'prefilters' => [],
                 'postfilters' => []
@@ -24,12 +29,18 @@ class CDemoSqr extends CBitrixComponent implements Controllerable
 
     public function ajaxAddEventAction()
     {
-        $arNotifications = HighloadblockObject::getNotifications(HL_BLOCK_ID_NOTIFICATIONS);
+        $arNotifications = HighloadblockNotification::getNotifications(HL_BLOCK_ID_NOTIFICATIONS);
         if (!empty($arNotifications))
         {
             $html = '<ul>';
+            $quantity = 0;
             foreach ($arNotifications as $arNotification)
             {
+                if ($arNotification['UF_CHECK'] == false)
+                {
+                    $quantity += 1;
+                }
+
                 $objDateTime = new DateTime($arNotification['UF_DATE_TIME']);
 
                 $html .= '<li><div class="notifications-desc">';
@@ -47,10 +58,16 @@ class CDemoSqr extends CBitrixComponent implements Controllerable
             return 
             [
                 'html' => $html,
-                'quantity' => count($arNotifications),
+                'quantity' => $quantity,
                 'result' => true
             ];
         }
         return ['result' => false];
+    }
+
+    public function ajaxUpdateEventAction()
+    {
+        $bNotification = HighloadblockNotification::updateCheckNotifications(getHLBlockIDByName('Notifications'));
+        return ['result' => $bNotification];
     }
 }

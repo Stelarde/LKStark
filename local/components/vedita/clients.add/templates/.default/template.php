@@ -1,3 +1,5 @@
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+<?$this->addExternalJS("/local/components/vedita/support.add/script.js");?>
 <div id="popup-client" class="popup popup-client">
     <div class="popup-grid">
        <div class="popup-client-main">
