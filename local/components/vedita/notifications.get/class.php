@@ -1,7 +1,7 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 use Bitrix\Main\Engine\Contract\Controllerable;
-use lib\HighloadblockObject\HighloadblockObject;
+use vedita\HighloadblockNotification;
 
 class CDemoSqr extends CBitrixComponent implements Controllerable
 {
@@ -29,7 +29,7 @@ class CDemoSqr extends CBitrixComponent implements Controllerable
 
     public function ajaxAddEventAction()
     {
-        $arNotifications = HighloadblockObject::getNotifications(HL_BLOCK_ID_NOTIFICATIONS);
+        $arNotifications = HighloadblockNotification::getNotifications(HL_BLOCK_ID_NOTIFICATIONS);
         if (!empty($arNotifications))
         {
             $html = '<ul>';
@@ -67,7 +67,7 @@ class CDemoSqr extends CBitrixComponent implements Controllerable
 
     public function ajaxUpdateEventAction()
     {
-        $bNotification = HighloadblockObject::updateCheckNotifications(HL_BLOCK_ID_NOTIFICATIONS);
+        $bNotification = HighloadblockNotification::updateCheckNotifications(getHLBlockIDByName('Notifications'));
         return ['result' => $bNotification];
     }
 }

@@ -16,6 +16,7 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 </head>
 
 <body>  
+<?$APPLICATION->ShowPanel();?>
 
 <header id="header" class="header">
       <div class="header-block">
