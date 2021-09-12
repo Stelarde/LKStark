@@ -103,7 +103,7 @@
                                                 <input type="search">
                                                 <div class="input-icon">
                                                     <svg>
-                                                        <use xlink:href="img/sprite.svg#input-search-icon"></use>
+                                                        <use xlink:href="<?=SITE_TEMPLATE_PATH?>img/sprite.svg#input-search-icon"></use>
                                                     </svg>
                                                 </div>
                                             </div>
@@ -189,7 +189,7 @@
                 </div>
                 <div class="v-body">
                 <?foreach($arResult['users'] as $arUser):?>
-                    <div class="v-tr grid-dashboard grid-column-gap-30">
+                    <div class="v-tr grid-dashboard grid-column-gap-30" onclick="window.location.href='/stranitsa-klienta/?client_id=<?=$arUser['ID']?>'">
                         
                         <div class="v-td">
                             <div>

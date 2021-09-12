@@ -9,7 +9,6 @@ if (!empty($arResult['ERROR']))
 }
 
 //$GLOBALS['APPLICATION']->SetTitle('Highloadblock List');
-
 ?>
 <div class="grid-item fill">
     <div class="v-table-wrap">
@@ -54,7 +53,7 @@ if (!empty($arResult['ERROR']))
 							}
 						}
 						if($col == 'ID'): ?>
-							<div class="v-th">
+							<div class="v-th"> 
 								<div class="v-checkbox all">
 									<label>
 										<input type="checkbox">
@@ -77,7 +76,7 @@ if (!empty($arResult['ERROR']))
 									</span>
 								</div>
 							</span>
-						<?elseif($col == 'UF_OBJECT_CONTACT_PERSON' || $col == 'UF_OBJECT_PERSON_PHONE' || $col == 'UF_OBJECT_PERSON_ADRESS' || $col == 'UF_OBJECT_USER_ID'): continue?>
+						<?elseif($col == 'UF_OBJECT_CONTACT_PERSON' || $col == 'UF_OBJECT_PERSON_PHONE' || $col == 'UF_OBJECT_PERSON_ADRESS' || $col == 'UF_OBJECT_USER_ID' || $col == 'UF_OBJECT_AMOUNT_DISCHARGED_BATTERIES' || $col == 'UF_OBJECT_AMOUNT_CHARGED_BATTERIES'): continue?>
 						<?else: ?>
 							<span class="<?=$th_class?> v-th" colId="<?=htmlspecialcharsbx($col)?>" defaultSort="<?=$defaultSort?>">
 								<div class="reports-head-cell">
@@ -117,7 +116,7 @@ if (!empty($arResult['ERROR']))
 					$finalValue = $row[$col];
 					if ($col === 'UF_OBJECT_NAME' && !empty($arParams['DETAIL_URL']))
 						{
-							$finalValue = '<a href="'.htmlspecialcharsbx($url).'">'.$finalValue.'</a>';
+							$finalValue = '<a href="/obozrevatel-obektov/'.htmlspecialcharsbx($url).'">'.$finalValue.'</a>';
 						}
 					?>
 					<? if($col == 'ID'): ?>
@@ -154,7 +153,7 @@ if (!empty($arResult['ERROR']))
 						<div class="v-td <?=$td_class?> cycles"><?=$finalValue?></div>
 					<?elseif($col == 'UF_OBJECT_EVENTS'): ?>
 						<div class="v-td <?=$td_class?> new-notification"><div><a href="#"><?=$finalValue?></a></div></div>
-					<?elseif($col == 'UF_OBJECT_CONTACT_PERSON' || $col == 'UF_OBJECT_PERSON_PHONE' || $col == 'UF_OBJECT_PERSON_ADRESS' || $col == 'UF_OBJECT_USER_ID'): continue?>
+					<?elseif($col == 'UF_OBJECT_CONTACT_PERSON' || $col == 'UF_OBJECT_PERSON_PHONE' || $col == 'UF_OBJECT_PERSON_ADRESS' || $col == 'UF_OBJECT_USER_ID' || $col == 'UF_OBJECT_AMOUNT_DISCHARGED_BATTERIES' || $col == 'UF_OBJECT_AMOUNT_CHARGED_BATTERIES'): continue?>
 					<?else: ?>
 						<div class="v-td <?=$td_class?>"><?=$finalValue?></div>
 					<? endif; ?>

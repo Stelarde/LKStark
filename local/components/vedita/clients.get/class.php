@@ -1,7 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 use Bitrix\Main\Engine\Contract\Controllerable;
-use lib\HighloadblockObject\HighloadblockObject;
 
 class Clients extends CBitrixComponent implements Controllerable
 {
