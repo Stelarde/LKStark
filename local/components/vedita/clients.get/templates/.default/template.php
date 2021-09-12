@@ -209,9 +209,9 @@
                             </div>
                         </div>
                         <div class="v-td"><div><?=$arUser['WORK_COMPANY']?></div></div>
-                        <div class="v-td"><div><a href="#">47</a></div></div>
-                        <div class="v-td"><div><a href="#">47</a></div></div>
-                        <div class="v-td new-notification"><div><a href="#">2</a></div></div>                        
+                        <div class="v-td"><div><a href="#"><?=$arUser['countBattary']?></a></div></div>
+                        <div class="v-td"><div><a href="#"><?=$arUser['countRentBattary']?></a></div></div>
+                        <div class="v-td new-notification"><div><a href="#"><?=$arUser['countEvents']?></a></div></div>                        
                     </div>
                 <?endforeach;?>
                 </div>

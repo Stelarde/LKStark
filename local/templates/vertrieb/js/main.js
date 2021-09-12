@@ -1,5 +1,11 @@
 "use strict";
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -170,9 +176,48 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  var batteryEffectGraphic = document.querySelector('.battery-effectiveness'); // const batteryEffectData = {
+  //     percent: 27,
+  //     value: {
+  //         given: 12.3,
+  //         received: 32.3
+  //     }
+  // }
+
+  if (batteryEffectGraphic) {
+    var batteryEffectPercentBlock = batteryEffectGraphic.querySelector('.battery-effectiveness-graphic-persent'),
+        batteryEffectPercent = batteryEffectPercentBlock.querySelector('.battery-effectiveness-graphic-persent span'),
+        batteryEffectArrow = batteryEffectGraphic.querySelector('.battery-effectiveness-graphic-arrow svg'),
+        batteryEffectGivenValue = batteryEffectGraphic.querySelector('.battery-effectiveness-value-given span'),
+        batteryEffectReceivedValue = batteryEffectGraphic.querySelector('.battery-effectiveness-value-received span');
+    setTimeout(function () {
+      // batteryEffectPercent.innerHTML = batteryEffectData.percent;
+      // batteryEffectGivenValue.innerHTML = batteryEffectData.value.given;
+      // batteryEffectReceivedValue.innerHTML = batteryEffectData.value.received;
+      batteryEffectArrow.style.transform = "rotate(".concat(180 * batteryEffectPercent.innerHTML / 100, "deg)");
+
+      if (batteryEffectPercent.innerHTML > 74) {
+        batteryEffectPercentBlock.classList.add('green-zone');
+      } else if (batteryEffectPercent.innerHTML > 49 && batteryEffectPercent.innerHTML < 75) {
+        batteryEffectPercentBlock.classList.add('yellow-zone');
+      } else if (batteryEffectPercent.innerHTML > 25 && batteryEffectPercent.innerHTML < 50) {
+        batteryEffectPercentBlock.classList.add('orange-zone');
+      } else if (batteryEffectPercent.innerHTML < 26) {
+        batteryEffectPercentBlock.classList.add('red-zone');
+      }
+    }, 500);
+  }
+
   var graphicsAll = document.querySelectorAll('.graphics-item'); // static data
 
-  var dataValues = {
+  var dataObjectValues = {
+    0: [67, 16, 9],
+    1: [16, 9, 67],
+    2: [60, 16, 16],
+    3: [20, 54, 16],
+    4: [16, 13, 63]
+  },
+      dataBatteryValues = {
     0: [67, 16, 9],
     1: [16, 9, 67],
     2: [60, 16, 16],
@@ -181,6 +226,24 @@ document.addEventListener('DOMContentLoaded', function () {
   },
       backgroundColors = ['#FD8204', '#43B02A', '#4F4F4F'],
       labelsValue = ["Работа", "Заряд", "Простой"];
+  var options = {
+    maintainAspectRatio: false,
+    responsive: true,
+    events: [],
+    plugins: {
+      legend: false,
+      datalabels: {
+        formatter: function formatter(value, ctx) {
+          return value + "%";
+        },
+        color: '#fff',
+        font: {
+          size: 12,
+          family: 'Roboto'
+        }
+      }
+    }
+  };
 
   if (graphicsAll.length) {
     for (var i = 0; i <= graphicsAll.length; i++) {
@@ -194,31 +257,246 @@ document.addEventListener('DOMContentLoaded', function () {
           data: {
             labels: [].concat(labelsValue),
             datasets: [{
-              data: _toConsumableArray(dataValues[i]),
+              data: _toConsumableArray(dataObjectValues[i]),
               backgroundColor: [].concat(backgroundColors)
             }]
           },
-          options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            events: [],
-            plugins: {
-              legend: false,
-              datalabels: {
-                formatter: function formatter(value, ctx) {
-                  return value + "%";
-                },
-                color: '#fff',
-                font: {
-                  size: 12,
-                  family: 'Roboto'
-                }
-              }
-            }
-          }
+          options: _objectSpread({}, options)
         });
       }
     }
+  } // battery page 
+
+
+  var batteryBar = document.querySelector('.battery-bar'),
+      batteryPie = document.querySelector('.battery-pie'),
+      batteryCycles = document.querySelector('.battery-cycles');
+  var todayBtn = document.getElementById('tab-btn-today'),
+      weekBtn = document.getElementById('tab-btn-week'),
+      monthBtn = document.getElementById('tab-btn-month'),
+      quarterBtn = document.getElementById('tab-btn-quarter'),
+      yearBtn = document.getElementById('tab-btn-year'),
+      allBtn = document.getElementById('tab-btn-all');
+  var chargeGraphicData = {
+    today: {
+      labels: ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+      charge: [62, 73, 49],
+      discharge: [70, 6, 19],
+      area: [45, 2, 45, 1, 44],
+      cycles: {
+        all: 4,
+        day: 5,
+        partly: 4
+      },
+      activity: {
+        percent: [64, 35, 10],
+        time: {
+          charge: '12 ч 45 мин',
+          discharge: '23 ч 25 мин',
+          downtime: '15 ч 30 мин'
+        }
+      }
+    },
+    week: {
+      labels: ['05 пн', '06 вт', '07 ср', '08 чт', '09 пт', '10 сб', '11 вс'],
+      charge: [12, 45, 22, 10, 34, 43],
+      discharge: [45, 70, 30, 10, 34, 56],
+      area: [23, 3, 45, 55, 54],
+      cycles: {
+        all: 30,
+        day: 2.5,
+        partly: 34
+      },
+      activity: {
+        percent: [60, 14, 25],
+        time: {
+          charge: '22 ч 45 мин',
+          discharge: '13 ч 15 мин',
+          downtime: '5 ч 30 мин'
+        }
+      }
+    },
+    month: {
+      labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'],
+      charge: [75, 33, 74, 32, 5, 11, 34, 76],
+      discharge: [12, 45, 22, 10, 34, 43, 64],
+      area: [23, 3, 45, 55, 54],
+      cycles: {
+        all: 10,
+        day: 2.5,
+        partly: 2
+      },
+      activity: {
+        percent: [26, 14, 22],
+        time: {
+          charge: '2 ч 45 мин',
+          discharge: '3 ч 10 мин',
+          downtime: '15 ч 35 мин'
+        }
+      }
+    },
+    quarter: {
+      labels: ['Январь', 'Февраль', 'Март'],
+      charge: [50, 60, 10],
+      discharge: [12, 45, 22],
+      area: [23, 3, 45, 55, 54],
+      cycles: {
+        all: 5,
+        day: 3,
+        partly: 55
+      },
+      activity: {
+        percent: [3, 17, 51],
+        time: {
+          charge: '2 ч 35 мин',
+          discharge: '3 ч 15 мин',
+          downtime: '15 ч 45 мин'
+        }
+      }
+    },
+    year: {
+      labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+      charge: [10, 50, 33],
+      discharge: [75, 33, 74],
+      area: [72, 59, 74, 70, 55],
+      cycles: {
+        all: 3,
+        day: 1,
+        partly: 5
+      },
+      activity: {
+        percent: [15, 20, 20],
+        time: {
+          charge: '12 ч 30 мин',
+          discharge: '3 ч 10 мин',
+          downtime: '14 ч 40 мин'
+        }
+      }
+    },
+    all: {
+      labels: ['2018', '2019', '2020', '2021'],
+      charge: [10, 50, 33],
+      discharge: [75, 33, 74],
+      area: [72, 59, 74, 70, 55],
+      cycles: {
+        all: 3,
+        day: 1,
+        partly: 5
+      },
+      activity: {
+        percent: [33, 41, 11],
+        time: {
+          charge: '1 ч 10 мин',
+          discharge: '39 ч 15 мин',
+          downtime: '14 ч 40 мин'
+        }
+      }
+    }
+  };
+
+  if (batteryPie) {
+    var batteryPieWork = document.querySelector('.battery-graphics-activity-data .data-work span'),
+        batteryPieCharge = document.querySelector('.battery-graphics-activity-data .data-charge span'),
+        batteryPiestand = document.querySelector('.battery-graphics-activity-data .data-stand span');
+    var batteryPieArray = [batteryPieWork, batteryPieCharge, batteryPiestand];
+    batteryPieWork.innerHTML = chargeGraphicData.today.activity.time.charge;
+    batteryPieCharge.innerHTML = chargeGraphicData.today.activity.time.discharge;
+    batteryPiestand.innerHTML = chargeGraphicData.today.activity.time.downtime;
+    var ctxBatteryPie = batteryPie === null || batteryPie === void 0 ? void 0 : batteryPie.getContext('2d');
+    var batteryPieChart = new Chart(ctxBatteryPie, {
+      type: 'pie',
+      plugins: [ChartDataLabels],
+      data: {
+        labels: false,
+        datasets: [{
+          data: _toConsumableArray(chargeGraphicData.today.activity.percent),
+          backgroundColor: [].concat(backgroundColors)
+        }]
+      },
+      options: _objectSpread({}, options)
+    });
+  }
+
+  if (batteryBar) {
+    var dataToday = batteryBarData(chargeGraphicData.today),
+        dataWeek = batteryBarData(chargeGraphicData.week),
+        dataMonth = batteryBarData(chargeGraphicData.month),
+        dataQuarter = batteryBarData(chargeGraphicData.quarter),
+        dataYear = batteryBarData(chargeGraphicData.year),
+        dataAll = batteryBarData(chargeGraphicData.all);
+    var ctxBatteryBar = batteryBar === null || batteryBar === void 0 ? void 0 : batteryBar.getContext('2d');
+    var batteryBarChart = new Chart(ctxBatteryBar, {
+      type: 'bar',
+      data: _objectSpread({}, dataToday),
+      options: {
+        responsive: true,
+        plugins: {
+          legend: false,
+          title: {
+            display: true
+          }
+        },
+        // radius: 0,
+        scales: {
+          x: {
+            ticks: {
+              font: {
+                size: 12,
+                family: 'Roboto',
+                weight: 500
+              },
+              color: '#828282'
+            }
+          },
+          y: {
+            min: 0,
+            max: 80,
+            ticks: {
+              font: {
+                size: 12,
+                family: 'Roboto',
+                weight: 500
+              },
+              color: '#E0E0E0'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  if (batteryCycles) {
+    var batteryCyclesAll = batteryCycles.querySelector('.object-cycles-value span'),
+        batteryCyclesDay = batteryCycles.querySelector('.object-cycles-text-day span'),
+        batteryCyclesPartly = batteryCycles.querySelector('.object-cycles-text-partly span');
+    var batteryCyclesArray = [batteryCyclesAll, batteryCyclesDay, batteryCyclesPartly];
+    batteryCyclesAll.innerHTML = chargeGraphicData.today.cycles.all;
+    batteryCyclesDay.innerHTML = chargeGraphicData.today.cycles.day;
+    batteryCyclesPartly.innerHTML = chargeGraphicData.today.cycles.partly;
+  }
+
+  if (todayBtn) {
+    eventClickTabs(todayBtn, batteryBarChart, _objectSpread({}, dataToday), batteryPieChart, chargeGraphicData.today, batteryPieArray, batteryCyclesArray);
+  }
+
+  if (weekBtn) {
+    eventClickTabs(weekBtn, batteryBarChart, _objectSpread({}, dataWeek), batteryPieChart, chargeGraphicData.week, batteryPieArray, batteryCyclesArray);
+  }
+
+  if (monthBtn) {
+    eventClickTabs(monthBtn, batteryBarChart, _objectSpread({}, dataMonth), batteryPieChart, chargeGraphicData.month, batteryPieArray, batteryCyclesArray);
+  }
+
+  if (quarterBtn) {
+    eventClickTabs(quarterBtn, batteryBarChart, _objectSpread({}, dataQuarter), batteryPieChart, chargeGraphicData.quarter, batteryPieArray, batteryCyclesArray);
+  }
+
+  if (yearBtn) {
+    eventClickTabs(yearBtn, batteryBarChart, _objectSpread({}, dataYear), batteryPieChart, chargeGraphicData.year, batteryPieArray, batteryCyclesArray);
+  }
+
+  if (allBtn) {
+    eventClickTabs(allBtn, batteryBarChart, _objectSpread({}, dataAll), batteryPieChart, chargeGraphicData.all, batteryPieArray, batteryCyclesArray);
   }
 
   $('.popup-link').fancybox({
@@ -270,8 +548,11 @@ function a(changeAdaptive) {
 
 function handleResize() {
   var windowWidth = window.innerWidth;
-  var mapBlock = document.querySelector('.object-map');
-  if (mapBlock) mapBlock.style.height = 272 + 'rem'; // всем костылям костыль..
+  var objectMapBlock = document.querySelector('.object-map'),
+      batteryMapBlock = document.querySelector('.battery-map');
+  if (objectMapBlock) objectMapBlock.style.height = 272 + 'rem'; // всем костылям костыль..
+
+  if (batteryMapBlock) batteryMapBlock.style.height = 138 + 'rem'; // еще один костылек..
 
   if (windowWidth > 1279) {
     document.children[0].style.fontSize = windowWidth / 1920 + 'px';
@@ -306,4 +587,63 @@ function addFile(addFileBlocks) {
       });
     });
   }
+}
+
+function batteryBarData(elem) {
+  var elemObj = {
+    labels: elem.labels,
+    datasets: [{
+      data: elem.charge,
+      backgroundColor: 'rgba(253, 130, 4, 0.6)',
+      order: 0
+    }, {
+      data: elem.discharge,
+      backgroundColor: 'rgba(67, 176, 42, 0.6)',
+      order: 1
+    }, {
+      data: elem.area,
+      backgroundColor: 'rgba(79, 79, 79, 0.3)',
+      borderColor: 'rgba(79, 79, 79, 0.3)',
+      type: 'line',
+      fill: true,
+      order: 2
+    }]
+  };
+  return elemObj;
+}
+
+function batteryBarFunc(thisEl, batteryBarChart, ctx) {
+  var tabLinks = document.querySelectorAll('.battery-graphics-tabs a');
+
+  if (tabLinks.length) {
+    tabLinks.forEach(function (tabLink) {
+      tabLink.classList.remove('active');
+    });
+  }
+
+  thisEl.classList.add('active');
+  batteryBarChart.data = ctx;
+  batteryBarChart.update();
+}
+
+function batteryPieFunc(batteryPieChart, todayObj, batteryPieArray) {
+  batteryPieArray[0].innerHTML = todayObj.activity.time.charge;
+  batteryPieArray[1].innerHTML = todayObj.activity.time.discharge;
+  batteryPieArray[2].innerHTML = todayObj.activity.time.downtime;
+  batteryPieChart.data.datasets[0].data = todayObj.activity.percent;
+  batteryPieChart.update();
+}
+
+function batteryCyclesFunc(batteryCyclesArray, cyclesObj) {
+  batteryCyclesArray[0].innerHTML = cyclesObj.all;
+  batteryCyclesArray[1].innerHTML = cyclesObj.day;
+  batteryCyclesArray[2].innerHTML = cyclesObj.partly;
+}
+
+function eventClickTabs(todayBtn, batteryBarChart, data, batteryPieChart, chargeGraphicData, batteryPieArray, batteryCyclesArray, chargeGraphicDatacycles) {
+  todayBtn.addEventListener('click', function () {
+    batteryBarFunc(this, batteryBarChart, data);
+    batteryPieFunc(batteryPieChart, chargeGraphicData, batteryPieArray);
+    batteryCyclesFunc(batteryCyclesArray, chargeGraphicData.cycles);
+  });
 }

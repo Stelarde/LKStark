@@ -8,6 +8,10 @@ if (!empty($arResult['ERROR']))
 	return false;
 }
 
+
+
+
+
 global $USER_FIELD_MANAGER;
 
 //$GLOBALS['APPLICATION']->SetTitle('Highloadblock Row');
@@ -15,6 +19,7 @@ global $USER_FIELD_MANAGER;
 $listUrl = str_replace('#BLOCK_ID#', intval($arParams['BLOCK_ID']),	$arParams['LIST_URL']);
 
 ?>
+
 <a href="<?=htmlspecialcharsbx($listUrl)?>"><?=GetMessage('HLBLOCK_ROW_VIEW_BACK_TO_LIST')?></a><br><br>
 
 <div class="reports-result-list-wrap">
@@ -31,12 +36,10 @@ $listUrl = str_replace('#BLOCK_ID#', intval($arParams['BLOCK_ID']),	$arParams['L
 					<div class="reports-head-cell"><span class="reports-head-cell-title"><?=GetMessage('HLBLOCK_ROW_VIEW_VALUE_COLUMN')?></span></div>
 				</th>
 			</tr>
-
 			<tr>
 				<td class="reports-first-column">ID</td>
 				<td class="reports-last-column"><?=$arResult['row']['ID']?></td>
 			</tr>
-
 			<? foreach($arResult['fields'] as $field): ?>
 				<? $title = $field["LIST_COLUMN_LABEL"]? $field["LIST_COLUMN_LABEL"]: $field['FIELD_NAME']; ?>
 				<tr>

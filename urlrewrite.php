@@ -32,6 +32,14 @@ $arUrlRewrite=array (
     'PATH' => '/batteries/index.php',
     'SORT' => 100,
   ),
+  5 => 
+  array (
+    'CONDITION' => '#^/documents/#',
+    'RULE' => '',
+    'ID' => 'bitrix:news',
+    'PATH' => '/documents/index.php',
+    'SORT' => 100,
+  ),
   0 => 
   array (
     'CONDITION' => '#^/rest/#',

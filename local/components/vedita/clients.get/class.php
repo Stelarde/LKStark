@@ -1,5 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
-
+use lib\HighloadblockObject\HighloadblockObject;
+use lib\HighloadblockBattery\HighloadblockBattery;
 use Bitrix\Main\Engine\Contract\Controllerable;
 
 class Clients extends CBitrixComponent implements Controllerable
@@ -49,7 +50,39 @@ class Clients extends CBitrixComponent implements Controllerable
                 while ($arUser = $rsUsers->Fetch())
                 {
                     $this->arResult['users'][$nUser] = $arUser;
-                    $this->arResult['users'][$nUser]['logoSrc'] = CFile::GetPath($arUser['WORK_LOGO']);
+                    $this->arResult['users'][$nUser]['logoSrc'] = CFile::GetPath($arUser['WORK_LOGO']);                    
+
+                    $countEvents = 0;
+                    $countRentBattary = 0;
+                    $countBattary = 0;
+                    $params = 
+                    [
+                        'select' => ['ID', 'UF_OBJECT_EVENTS'],                
+                        'filter' => ['UF_OBJECT_USER_ID' => $arUser['ID']],     
+                    ];
+                    $rsObjcet = HighloadblockObject::getObjects(getHLBlockIDByName("ObjectBrowser"), $params);
+                    while ($arObject = $rsObjcet->Fetch())
+                    {
+                        $params = 
+                        [
+                            'select' => ['UF_BATTERY_FOR_RENT'],                
+                            'filter' => ['UF_OBJECT_ID' => $arObject['ID']], 
+                        ];
+                        $arBatterys = HighloadblockBattery::getInfoBattery(getHLBlockIDByName("Battaries"), $params);
+                        foreach($arBatterys as $arBattery)
+                        {
+                            $countBattary++;
+                            if ($arBattery['UF_BATTERY_FOR_RENT'])
+                            {
+                                $countRentBattary++;
+                            }
+                        }
+                        $countEvents += $arObject['UF_OBJECT_EVENTS'];
+                    }
+                    $this->arResult['users'][$nUser]['countEvents'] = $countEvents;
+                    $this->arResult['users'][$nUser]['countRentBattary'] = $countRentBattary;
+                    $this->arResult['users'][$nUser]['countBattary'] = $countBattary;
+
                     $nUser++;
                 }
                 return true;

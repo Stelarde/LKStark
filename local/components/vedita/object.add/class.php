@@ -28,7 +28,7 @@ class Feedback extends \CBitrixComponent implements Controllerable
             "UF_OBJECT_PERSON_ADRESS" => $object_adres,
             "UF_OBJECT_USER_ID" => $user_id
         ];
-        if(HighloadblockObject::addObject(HL_BLOCK_ID_OBJECT,$data))
+        if(HighloadblockObject::addObject(getHLBlockIDByName("ObjectBrowser"),$data))
         {
             return 
             [

@@ -11,6 +11,34 @@ if (!empty($arResult['ERROR']))
 //$GLOBALS['APPLICATION']->SetTitle('Highloadblock List');
 
 ?>
+<h1>Обозреватель объектов</h1>
+        <div class="grid-dashboard grid-column-12 grid-row-gap-30">
+            <div class="grid-item fill">
+                <a data-fancybox data-type="ajax" data-src="<?=SITE_TEMPLATE_PATH?>/popups/popup-add-object.php" href="javascript:;"  class="btn-secondary popup-link">Добавить объект</a> 
+            </div>
+            <div class="grid-item fill grid-dashboard grid-row-gap-15 subtitle-block">
+                <div class="grid-item grid-dashboard grid-column-12 grid-column-gap-30 actions-wrap">
+                    <div class="grid-item actions-select">
+                        <div class="v-select default">
+                            <div class="v-select-value">Выберите действие</div>
+                            <div class="v-select-options">
+                                <div class="v-select-options-block">
+                                    <ul>
+                                        <li><a href="#">Выберите действие</a></li>
+                                        <li><a href="#">Сформировать отчёт</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-item actions-marked">
+                        <div class="marked-text">
+                            <p>Отмечено <span id="count-checked">0</span>/<span id="count-all"><?=count($arResult['rows'])?></span></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 <div class="grid-item fill">
     <div class="v-table-wrap">
         <div class="v-table objects grid-dashboard grid-row-gap-15 fill checked-all">
@@ -55,9 +83,9 @@ if (!empty($arResult['ERROR']))
 						}
 						if($col == 'ID'): ?>
 							<div class="v-th">
-								<div class="v-checkbox all">
+								<div  class="v-checkbox all">
 									<label>
-										<input type="checkbox">
+										<input id="check-all" type="checkbox">
 										<div></div>
 									</label>
 								</div>
@@ -77,7 +105,7 @@ if (!empty($arResult['ERROR']))
 									</span>
 								</div>
 							</span>
-						<?elseif($col == 'UF_OBJECT_CONTACT_PERSON' || $col == 'UF_OBJECT_PERSON_PHONE' || $col == 'UF_OBJECT_PERSON_ADRESS' || $col == 'UF_OBJECT_USER_ID'): continue?>
+						<?elseif($col == 'UF_OBJECT_ERRORS' || $col == 'UF_OBJECT_WARNINGS' || $col == 'UF_OBJECT_USER_ID' || $col == 'UF_OBJECT_CONTACT_PERSON' || $col == 'UF_OBJECT_PERSON_PHONE' || $col == 'UF_OBJECT_PERSON_ADRESS'): continue?>
 						<?else: ?>
 							<span class="<?=$th_class?> v-th" colId="<?=htmlspecialcharsbx($col)?>" defaultSort="<?=$defaultSort?>">
 								<div class="reports-head-cell">
@@ -132,7 +160,7 @@ if (!empty($arResult['ERROR']))
 							<div>
 								<div class="v-checkbox default">
 									<label>
-										<input type="checkbox">
+										<input class="checkbox-default" type="checkbox">
 										<div></div>
 									</label>
 								</div>
@@ -154,7 +182,7 @@ if (!empty($arResult['ERROR']))
 						<div class="v-td <?=$td_class?> cycles"><?=$finalValue?></div>
 					<?elseif($col == 'UF_OBJECT_EVENTS'): ?>
 						<div class="v-td <?=$td_class?> new-notification"><div><a href="#"><?=$finalValue?></a></div></div>
-					<?elseif($col == 'UF_OBJECT_CONTACT_PERSON' || $col == 'UF_OBJECT_PERSON_PHONE' || $col == 'UF_OBJECT_PERSON_ADRESS' || $col == 'UF_OBJECT_USER_ID'): continue?>
+					<?elseif($col == 'UF_OBJECT_ERRORS' || $col == 'UF_OBJECT_WARNINGS' || $col == 'UF_OBJECT_USER_ID' || $col == 'UF_OBJECT_CONTACT_PERSON' || $col == 'UF_OBJECT_PERSON_PHONE' || $col == 'UF_OBJECT_PERSON_ADRESS'): continue?>
 					<?else: ?>
 						<div class="v-td <?=$td_class?>"><?=$finalValue?></div>
 					<? endif; ?>
@@ -181,6 +209,47 @@ if (!empty($arResult['ERROR']))
 				<input type="hidden" name="sort_id" value="">
 				<input type="hidden" name="sort_type" value="">
 			</form>
+			<script type="text/javascript">
+			BX.ready(function(){
+				$('#check-all').click(function () 
+				{
+					var t = $(this).parents('.checked-all');
+					if (this.checked == true)
+					{
+						t.find('input[type=checkbox]').each(function() 
+						{
+							this.checked = true; 
+							$('#count-checked').text($('#count-all').text());
+						});
+					}
+					else
+					{
+						t.find('input[type=checkbox]').each(function() 
+						{
+							this.checked = false; 
+							$('#count-checked').text('0');
+						});
+					}
+				});
+
+				$('.checkbox-default').click(function () 
+				{
+					if (this.checked == true)
+					{
+						var countChecked = parseInt($('#count-checked').text());
+						countChecked++;
+						$('#count-checked').text(countChecked);
+					}
+					else
+					{
+						var countChecked = parseInt($('#count-checked').text());
+						countChecked--;
+						$('#count-checked').text(countChecked);
+					}
+				});
+			});
+		</script>
+		
 			<script type="text/javascript">
 				BX.ready(function(){
 					var rows = BX.findChildren(BX('report-result-table'), {tag:'span'}, true);

@@ -18,10 +18,30 @@ $APPLICATION->SetTitle("Title");
 		"ROOT_MENU_TYPE" => "top",
 		"USE_EXT" => "N"
 	)
-);?><?$APPLICATION->IncludeComponent(
-	"vedita:client.get",
-	"",
-Array()
 );?>
+<!-- Таблица объектов -->
+<? $APPLICATION->IncludeComponent(
+        "vedita:highloadblock.complex",
+        "clientobjects",
+        [
+            "BLOCK_ID"           => getHLBlockIDByName("ObjectBrowser"),
+            "CHECK_PERMISSIONS"  => "Y",
+            "FILTER_NAME"        => "arFilter",
+            "PAGEN_ID"           => "page",
+            "ROWS_PER_PAGE"      => "5",
+            "ROW_KEY"            => "ID",
+            "SEF_FOLDER"         => "/stranitsa-klienta/",
+            "SEF_MODE"           => "Y",
+            "SORT_FIELD"         => "ID",
+            "SORT_ORDER"         => "ASC",
+            "COMPONENT_TEMPLATE" => "clientobjects",
+            "SEF_URL_TEMPLATES"  => [
+                "list" => "",
+                "view" => "#ID#/",
+            ],
+        ],
+        false
+    );
+    ?>
 </div>
  </main><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

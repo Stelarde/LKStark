@@ -13,5 +13,6 @@ require_once(__DIR__.'/classes/highloadblock/HighloadblockObject.php');
 require_once(__DIR__.'/classes/highloadblock/HighloadblockSupport.php');
 require_once(__DIR__.'/classes/highloadblock/HighloadblockNotification.php');
 require_once(__DIR__.'/classes/highloadblock/HighloadblockMethod.php');
+require_once(__DIR__.'/classes/highloadblock/HighloadblockBattery.php');
 
 
