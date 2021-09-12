@@ -23,6 +23,18 @@ class HighloadblockObject
            return false;
        }
     }
+    public static function getObject(int $HLBlockID,array $params)
+    {
+        $hlblock = new HighloadblockMethod($HLBlockID);
+        $rsBattery = $hlblock->getList($params);
+        while($arr = $rsBattery->Fetch())
+        {
+            $arBattery = $arr;
+        }
+        if(!empty($arBattery))
+            return $arBattery;
+        return [];
+    }
     public static function checkValidate(array $params) : bool
     {
         if (empty($params["UF_OBJECT_SRC"]) or empty($params["UF_OBJECT_NAME"]) or empty($params["UF_OBJECT_CONTACT_PERSON"]) or empty($params["UF_OBJECT_PERSON_PHONE"]) or empty($params["UF_OBJECT_PERSON_ADRESS"]) or empty($params["UF_OBJECT_USER_ID"]))
