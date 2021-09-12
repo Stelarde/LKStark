@@ -80,6 +80,8 @@ global $USER;
 $arGroups = $USER->GetUserGroupArray();
 if (in_array(DEALER_GROUP, $arGroups))
     $sMenuType = "leftdealer";
+if (in_array(CLIENT_GROUP, $arGroups))
+    $sMenuType = "leftclient";
 ?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:menu",

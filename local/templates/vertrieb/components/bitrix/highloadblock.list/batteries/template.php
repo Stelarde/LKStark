@@ -22,6 +22,10 @@ if (!empty($arResult['ERROR']))
                     <? $i = 0;
                     foreach(array_keys($arResult['tableColumns']) as $sPropName): ?>
                         <? //var_dump($sPropName);
+                        if($sPropName == 'UF_OBJECT_ERRORS' || $sPropName == 'UF_OBJECT_WARNINGS' || $sPropName == 'UF_WIDTH' || $sPropName == 'UF_LONGITUDE' || $sPropName == 'UF_BATTERY_FOR_RENT')
+                        {
+                            continue;
+                        }
                         if ($sPropName === "ID")
                         {
                             ?>
@@ -68,11 +72,9 @@ if (!empty($arResult['ERROR']))
                             <?
                             continue;
                         }
-
+                        
                         ?>
                         <div class="v-th"><div><?=htmlspecialcharsex($title)?></div></div>
-                        <?if ($sPropName == "UF_RES_LEFT"):?><div class="v-th"></div><?endif;?>
-                        <?if ($sPropName == "UF_DATE_UNTIL"):?><div class="v-th"></div><?endif;?>
                 <? endforeach; ?>
                 </div>
             </div>
@@ -91,7 +93,10 @@ if (!empty($arResult['ERROR']))
                             $sAdditionalClass = '';
                             $i++;
                             $sPropValue = $arBattery[$sBatteryProp];
-
+                            if($sBatteryProp == 'UF_OBJECT_ERRORS' || $sBatteryProp == 'UF_OBJECT_WARNINGS' || $sBatteryProp == 'UF_WIDTH' || $sBatteryProp == 'UF_LONGITUDE' || $sBatteryProp == 'UF_BATTERY_FOR_RENT')
+                        {
+                            continue;
+                        }
                             if ($sBatteryProp === 'ID')
                             {
                                 $iBattaryId = (int) $sPropValue;
@@ -152,8 +157,7 @@ if (!empty($arResult['ERROR']))
 
                             ?>
                             <div class="v-td <?=$sAdditionalClass;?>"><div><?=$sPropValue?></div></div>
-                            <?if ($sBatteryProp == "UF_RES_LEFT"):?><div class="v-td"><div></div></div><?endif;?>
-                            <?if ($sBatteryProp == "UF_DATE_UNTIL"):?><div class="v-td"><div></div></div><?endif;?>
+
                         <? endforeach; ?>
                     </div>
                 <? endforeach; ?>
