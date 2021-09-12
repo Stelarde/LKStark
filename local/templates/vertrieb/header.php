@@ -14,9 +14,8 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 ?>
 <?$APPLICATION->ShowHead();?>
 </head>
-<?$APPLICATION->ShowPanel();?>
+
 <body>  
-<?$APPLICATION->ShowPanel();?>
 
 <header id="header" class="header">
       <div class="header-block">
@@ -81,6 +80,8 @@ global $USER;
 $arGroups = $USER->GetUserGroupArray();
 if (in_array(DEALER_GROUP, $arGroups))
     $sMenuType = "leftdealer";
+if (in_array(CLIENT_GROUP, $arGroups))
+    $sMenuType = "leftclient";
 ?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:menu",
