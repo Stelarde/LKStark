@@ -83,7 +83,7 @@ class ChangeProfile extends \CBitrixComponent implements Controllerable
     {
         $arFiles = CFile::MakeFileArray($_FILES['userfile']['tmp_name']);
         $id = CFile::SaveFile($arFiles,"/tmp");
-        $file = CFile::ResizeImageGet($id, array('width'=>53, 'height'=>53), BX_RESIZE_IMAGE_PROPORTIONAL, true); 
+        $file = CFile::ResizeImageGet($id, array('width'=>70, 'height'=>70), BX_RESIZE_IMAGE_PROPORTIONAL, true); 
             $URL = $file['src'];
         return [
             'result' => $URL
@@ -101,7 +101,7 @@ class ChangeProfile extends \CBitrixComponent implements Controllerable
         $user = $this->getUserSetting();
         if(!empty($user['PERSONAL_PHOTO']))
         {
-            $file = CFile::ResizeImageGet($user['PERSONAL_PHOTO'], array('width'=>53, 'height'=>53), BX_RESIZE_IMAGE_PROPORTIONAL, true); 
+            $file = CFile::ResizeImageGet($user['PERSONAL_PHOTO'], array('width'=>70, 'height'=>70), BX_RESIZE_IMAGE_PROPORTIONAL, true); 
             $URL = $file['src'];
             return $URL;
         }
