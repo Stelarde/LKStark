@@ -46,4 +46,9 @@ class HighloadblockObject
             return false;
         return true;
     }
+    public static function getObjects (int $HLBlockID, array $params): object
+    {
+        $hlblock = new HighloadblockMethod($HLBlockID);
+        return $hlblock->getList($params);
+    }
 }

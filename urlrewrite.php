@@ -8,6 +8,22 @@ $arUrlRewrite=array (
     'PATH' => '/obozrevatel-obektov/index.php',
     'SORT' => 100,
   ),
+  5 => 
+  array (
+    'CONDITION' => '#^/stranitsa-klienta/#',
+    'RULE' => '',
+    'ID' => 'vedita:highloadblock.complex',
+    'PATH' => '/stranitsa-klienta/index.php',
+    'SORT' => 100,
+  ),
+  2 => 
+  array (
+    'CONDITION' => '#^/documents/#',
+    'RULE' => '',
+    'ID' => 'bitrix:news',
+    'PATH' => '/documents/index.php',
+    'SORT' => 100,
+  ),
   4 => 
   array (
     'CONDITION' => '#^/batteries/#',

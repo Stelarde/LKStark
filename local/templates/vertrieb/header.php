@@ -28,7 +28,7 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
                 </a>
             </div>
             <div class="header-back-btn">
-                <a href="#" class="btn-icon">
+                <a href="javascript:;" class="btn-icon" onclick="window.history.go(-1); return false;">
                     <svg>
                         <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#back-arrow-icon"></use>
                     </svg>
