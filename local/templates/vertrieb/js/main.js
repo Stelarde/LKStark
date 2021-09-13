@@ -221,14 +221,9 @@ document.addEventListener('DOMContentLoaded', function () {
     changeMonth: false,
     changeYear: false
   }); // изменение кастомного добавления файлов
-  // $(".attath-file-uploud-default").change(function() {
-  //     var f_name = [];
-  //     for (var i = 0; i < $(this).get(0).files.length; ++i) {
-  //         f_name.push(" " + $(this).get(0).files[i].name);
-  //     }
-  //     $("#f_name").val(f_name.join(", "));
-  // });
 
+  var attachFileSupport = document.querySelectorAll('.attach-file');
+  attachFile(attachFileSupport);
   var graphicsAll = document.querySelectorAll('.graphics-item'); // static data
 
   var backgroundColors = ['#FD8204', '#43B02A', '#4F4F4F'];
@@ -552,6 +547,29 @@ document.addEventListener('DOMContentLoaded', function () {
     eventClickTabs(allBtn, batteryBarChart, _objectSpread({}, dataAll), batteryPieChart, chargeGraphicData.all, batteryPieArray, batteryCyclesArray);
   }
 
+  var documentationSlider = document.querySelector('.documentation .swiper');
+
+  if (documentationSlider) {
+    var documentationSwiper = new Swiper(documentationSlider, {
+      loop: false,
+      centeredSlides: true,
+      observer: true,
+      spaceBetween: 350,
+      observerParents: true,
+      observerSlideChildren: true,
+      slidesPerGroup: 1,
+      slidesPerView: 1,
+      pagination: {
+        el: '.documentation .swiper-pagination',
+        type: 'fraction'
+      },
+      navigation: {
+        nextEl: '.documentation .swiper-button-next',
+        prevEl: '.documentation .swiper-button-prev'
+      }
+    });
+  }
+
   $('.popup-link').fancybox({
     touch: false,
     autoFocus: false
@@ -612,7 +630,13 @@ function handleResize() {
   } else {
     document.children[0].style.fontSize = '0.666667px';
   }
-}
+} // function updateSwiper(documentationSlider, documentationSwiper) {
+//     if(documentationSlider) {
+//         documentationSwiper.updateSize();
+//         console.log(documentationSwiper);
+//     }
+// }
+
 
 function addFile(addFileBlocks) {
   if (addFileBlocks.length) {
@@ -637,6 +661,38 @@ function addFile(addFileBlocks) {
         addFileInput.value = '';
         addFileDiv.style.backgroundImage = '';
         deleteFileBtn.style.display = 'none';
+      });
+    });
+  }
+}
+
+function attachFile(attachFileBlocks) {
+  if (attachFileBlocks.length) {
+    attachFileBlocks.forEach(function (attachFileBlockCurrent) {
+      var attachFileInput = attachFileBlockCurrent.querySelector('input'),
+          attachFileDiv = attachFileBlockCurrent.querySelector('.attach-file-block div'),
+          attachDeleteFileBtn = attachFileBlockCurrent.querySelector('.delete-file');
+      attachFileInput.addEventListener('change', function () {
+        if (this.files.length) {
+          var filesArray = [];
+          var fileList = this.files;
+          Array.from(fileList).forEach(function (fileCurrent) {
+            var fileName = fileCurrent.name;
+            filesArray.push(fileName);
+            attachFileDiv.classList.add('fill');
+          });
+          attachFileDiv.innerHTML = [].concat(filesArray);
+
+          if (this.files.length) {
+            attachDeleteFileBtn.style.display = 'block';
+          }
+        }
+      });
+      attachDeleteFileBtn.addEventListener('click', function () {
+        attachFileInput.value = '';
+        attachFileDiv.innerHTML = 'Прикрепить файлы';
+        attachFileDiv.classList.remove('fill');
+        attachDeleteFileBtn.style.display = 'none';
       });
     });
   }
