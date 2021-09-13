@@ -42,14 +42,21 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 	        "",
             Array()
         );?>
+         <?
+            global $USER;
+            $user_id = $USER->GetID();
+            $rsUser = CUser::GetByID($user_id)->Fetch();
+            $file = CFile::ResizeImageGet($rsUser['PERSONAL_PHOTO'], array('width'=>32, 'height'=>32), BX_RESIZE_IMAGE_PROPORTIONAL, true); 
+            $URL = $file['src'];  
+        ?>
               <div class="header-info v-dropdown">
                   <a href="javascript:;" class="header-info-btn v-dropdown-btn">
                     <div class="header-info-photo">
-                        <img src="<?=SITE_TEMPLATE_PATH?>/img/info-photo.jpg" alt="<?=IMAGE_ALT?>">
+                        <img src="<?=$URL?>" alt="<?=IMAGE_ALT?>">
                     </div>
                     <div class="header-info-text">
-                        <p class="header-info-text-name">Константин</p>
-                        <p class="header-info-text-position">Организация</p>
+                        <p class="header-info-text-name"><?=$rsUser["NAME"]?></p>
+                        <p class="header-info-text-position"><?=$rsUser["WORK_COMPANY"]?></p>
                     </div>
                     <div class="header-info-arrow">
                         <span>

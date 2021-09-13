@@ -129,7 +129,7 @@ $chargeGraphicData =
             ]
         ]
     ],
-]; 
+];
 ?>
 <script>
     var chargeGraphicData = <?=CUtil::PhpToJSObject($chargeGraphicData)?>;
