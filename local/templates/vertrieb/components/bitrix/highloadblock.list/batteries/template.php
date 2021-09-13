@@ -177,6 +177,7 @@ if (!empty($arResult['ERROR']))
 
 
 <?php
+/*
 if ($arParams['ROWS_PER_PAGE'] > 0):
 	$APPLICATION->IncludeComponent(
 		'bitrix:main.pagenavigation',
@@ -187,52 +188,6 @@ if ($arParams['ROWS_PER_PAGE'] > 0):
 		),
 		false
 	);
-endif;
+endif;*/
 ?>
 
-
-<form id="hlblock-table-form" action="" method="get">
-	<input type="hidden" name="BLOCK_ID" value="<?=htmlspecialcharsbx($arParams['BLOCK_ID'])?>">
-	<input type="hidden" name="sort_id" value="">
-	<input type="hidden" name="sort_type" value="">
-</form>
-
-<script type="text/javascript">
-	BX.ready(function(){
-		var rows = BX.findChildren(BX('report-result-table'), {tag:'th'}, true);
-		for (i in rows)
-		{
-			var ds = rows[i].getAttribute('defaultSort');
-			if (ds == '')
-			{
-				BX.addClass(rows[i], 'report-column-disabled-sort')
-				continue;
-			}
-
-			BX.bind(rows[i], 'click', function(){
-				var colId = this.getAttribute('colId');
-				var sortType = '';
-
-				var isCurrent = BX.hasClass(this, 'reports-selected-column');
-
-				if (isCurrent)
-				{
-					var currentSortType = BX.hasClass(this, 'reports-head-cell-top') ? 'ASC' : 'DESC';
-					sortType = currentSortType == 'ASC' ? 'DESC' : 'ASC';
-				}
-				else
-				{
-					sortType = this.getAttribute('defaultSort');
-				}
-
-				var idInp = BX.findChild(BX('hlblock-table-form'), {attr:{name:'sort_id'}});
-				var typeInp = BX.findChild(BX('hlblock-table-form'), {attr:{name:'sort_type'}});
-
-				idInp.value = colId;
-				typeInp.value = sortType;
-
-				BX.submit(BX('hlblock-table-form'));
-			});
-		}
-	});
-</script>
