@@ -1,7 +1,6 @@
 <?
 $PERM["sluzhba-podderzhki"]["5"]="R";
 $PERM["sluzhba-podderzhki"]["7"]="R";
-$PERM["settings-profile"]["3"]="D";
 $PERM["settings-profile"]["5"]="R";
 $PERM["settings-profile"]["7"]="R";
 $PERM["batteries"]["5"]="R";
