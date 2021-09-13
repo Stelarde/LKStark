@@ -203,7 +203,9 @@
                         <div class="v-td " onclick="window.location.href='/stranitsa-klienta/?client_id=<?=$arUser['ID']?>'">
                             <div>
                                 <div class="client-logo">
-                                    <img src="<?=$arUser['logoSrc']?>" alt="">
+                                    <a href="/stranitsa-klienta/?client_id=<?=$arUser['ID']?>">
+                                        <img src="<?=$arUser['logoSrc']?>" alt="">
+                                    </a>
                                 </div>
                             </div>
                         </div>
