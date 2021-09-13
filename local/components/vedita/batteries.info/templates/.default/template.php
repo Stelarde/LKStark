@@ -154,7 +154,7 @@ $chargeGraphicData =
                                     <div class="v-dropdown type-2 left">
                                         <a href="javascript:;" class="v-dropdown-btn">
                                           <svg>
-                                              <use xlink:href="img/sprite.svg#settings-icon"></use>
+                                              <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#settings-icon"></use>
                                           </svg>
                                         </a>
                                         <div class="v-dropdown-options">
@@ -204,7 +204,7 @@ $chargeGraphicData =
                                             <p>Версия ПО</p>
                                             <span>1.01</span>
                                             <svg>
-                                                <use xlink:href="img/sprite.svg#battery-version-icon"></use>
+                                                <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#battery-version-icon"></use>
                                             </svg>
                                         </div>
                                     </div>
