@@ -189,8 +189,7 @@
                 </div>
                 <div class="v-body">
                 <?foreach($arResult['users'] as $arUser):?>
-                    <div class="v-tr grid-dashboard grid-column-gap-30" onclick="window.location.href='/stranitsa-klienta/?client_id=<?=$arUser['ID']?>'">
-                        
+                    <div class="v-tr grid-dashboard grid-column-gap-30">                        
                         <div class="v-td">
                             <div>
                                 <div class="v-checkbox default">
@@ -201,17 +200,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="v-td ">
+                        <div class="v-td " onclick="window.location.href='/stranitsa-klienta/?client_id=<?=$arUser['ID']?>'">
                             <div>
                                 <div class="client-logo">
                                     <img src="<?=$arUser['logoSrc']?>" alt="">
                                 </div>
                             </div>
                         </div>
-                        <div class="v-td"><div><?=$arUser['WORK_COMPANY']?></div></div>
-                        <div class="v-td"><div><a href="#"><?=$arUser['countBattary']?></a></div></div>
-                        <div class="v-td"><div><a href="#"><?=$arUser['countRentBattary']?></a></div></div>
-                        <div class="v-td new-notification"><div><a href="#"><?=$arUser['countEvents']?></a></div></div>                        
+                        <div class="v-td" onclick="window.location.href='/stranitsa-klienta/?client_id=<?=$arUser['ID']?>'"><div><?=$arUser['WORK_COMPANY']?></div></div>
+                        <div class="v-td" onclick="window.location.href='/stranitsa-klienta/?client_id=<?=$arUser['ID']?>'"><div><a href="#"><?=$arUser['countBattary']?></a></div></div>
+                        <div class="v-td" onclick="window.location.href='/stranitsa-klienta/?client_id=<?=$arUser['ID']?>'"><div><a href="#"><?=$arUser['countRentBattary']?></a></div></div>
+                        <div class="v-td new-notification" onclick="window.location.href='/stranitsa-klienta/?client_id=<?=$arUser['ID']?>'"><div><a href="#"><?=$arUser['countEvents']?></a></div></div>                        
                     </div>
                 <?endforeach;?>
                 </div>
