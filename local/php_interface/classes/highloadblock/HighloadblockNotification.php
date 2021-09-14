@@ -14,6 +14,7 @@ class HighloadblockNotification
             {
                 $params = 
                 [
+                    'order' => ['ID' => 'DESC'],
                     'select' => ['*'],                
                     'filter' => ['UF_USER_ID' => $userId],     
                 ];
