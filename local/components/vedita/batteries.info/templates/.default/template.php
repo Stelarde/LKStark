@@ -141,7 +141,12 @@ $chargeGraphicData =
                 <div class="battery-top grid-dashboard grid-column-12 grid-column-gap-30 grid-row-gap-15">
                     <div class="battery-info">
                         <div class="battery-info-img">
-                            <img src="<?=SITE_TEMPLATE_PATH?>/img/battery-img.png" alt="">
+                            <?
+                            
+                            $file = CFile::ResizeImageGet($arResult['fields']['UF_BATTERY_IMG']['VALUE'], array('width'=>115, 'height'=>104), BX_RESIZE_IMAGE_PROPORTIONAL, true); 
+                            $URL = $file['src']; 
+                            ?>
+                            <img src="<?=$URL?>" alt="">
                         </div>
                         <div class="battery-info-block">
                             <div class="battery-info-title">

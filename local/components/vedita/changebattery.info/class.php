@@ -22,8 +22,7 @@ class ChangeBattery extends \CBitrixComponent implements Controllerable
         {
             $arFiles = CFile::MakeFileArray($_FILES['userfile']['tmp_name']);
             $id = CFile::SaveFile($arFiles,"/main");
-            $path = CFile::GetPath($id);
-            $dataBattery['UF_BATTERY_IMG'] = $path;
+            $dataBattery['UF_BATTERY_IMG'] = $id;
         }
         if(!empty($_POST['object']))
         {

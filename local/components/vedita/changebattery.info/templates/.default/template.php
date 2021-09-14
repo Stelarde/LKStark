@@ -10,7 +10,11 @@
                     <div class="changing-battery-data-image-add">
                         <div class="input-add-file">
                             <input type="file" name="userfile" id="add-file-img2">
-                            <div></div>
+                            <?
+                            $file = CFile::ResizeImageGet($arResult['battery']['UF_BATTERY_IMG'], array('width'=>65, 'height'=>65), BX_RESIZE_IMAGE_PROPORTIONAL, true); 
+                            $URL = $file['src'];  
+                            ?>
+                            <div style="background-image: url('<?=$URL?>')"></div>
                             <label for="add-file-img2" class="btn-inline">Загрузить файл</label>
                             <a href="javascript:;" class="btn-inline delete-img">Удалить</a>
                         </div>
