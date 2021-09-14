@@ -11,11 +11,6 @@ if (!empty($arResult['ERROR']))
 //$GLOBALS['APPLICATION']->SetTitle('Highloadblock List');
 ?>
 <div class="client-top grid-dashboard grid-column-12 grid-row-gap-20">
-	<?$APPLICATION->IncludeComponent(
-		"vedita:client.get",
-		"",
-	Array()
-	);?>
 	<div class="grid-item fill">
 	    <div class="v-table-wrap">
 	        <div class="v-table objects grid-dashboard grid-row-gap-15 fill checked-all">

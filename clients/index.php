@@ -18,10 +18,22 @@ $APPLICATION->SetTitle("Title");
 		"ROOT_MENU_TYPE" => "top",
 		"USE_EXT" => "N"
 	)
-);?><?$APPLICATION->IncludeComponent(
-	"vedita:clients.get",
-	"",
-Array()
 );?>
+
+<? 
+$APPLICATION->IncludeComponent(
+    "vedita:client.complex",
+    "",
+    [
+        "SEF_FOLDER"         => "/clients/",
+        "SEF_MODE"           => "Y",
+        "SEF_URL_TEMPLATES"  => [
+            "list" => "",
+            "view" => "#ID#/",
+        ],
+    ],
+    false
+);
+?>
 </div>
  </main><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

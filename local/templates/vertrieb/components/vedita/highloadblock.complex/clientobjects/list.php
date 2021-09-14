@@ -6,15 +6,6 @@
 /** @var array $arResult */
 /** @global CMain $APPLICATION */
 ?>
-<?
-$user_id = $_GET['client_id'];
-if (is_numeric($user_id) AND $user_id > 0)
-{
-    $GLOBALS['arFilter'] = ['UF_OBJECT_USER_ID' => $user_id];
-}
-
-$GLOBALS['arSelect'] = ['UF_OBJECT_USER_ID'];
-?>
 
 <? $APPLICATION->IncludeComponent(
     'bitrix:highloadblock.list',
