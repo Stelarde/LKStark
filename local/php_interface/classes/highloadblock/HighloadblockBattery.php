@@ -41,15 +41,45 @@ class HighloadblockBattery
     }
     public static function getInfoBattery($HLBlockID,$params)
     {
+        $i=0;
         $hlblock = new HighloadblockMethod($HLBlockID);
         $rsBattery = $hlblock->getList($params);
         while($arr = $rsBattery->Fetch())
         {
-            $arBattery[] = $arr;
+            $i++;
+        }
+        $rsBattery = $hlblock->getList($params);
+        if($i > 1)
+        {
+            while($arr = $rsBattery->Fetch())
+            {
+                $arBattery[] = $arr;
+            }
+        }
+        else
+        {
+            while($arr = $rsBattery->Fetch())
+            {
+                $arBattery = $arr;
+            }
         }
         if(!empty($arBattery))
             return $arBattery;
         return [];
+    }
+    public static function updateBattery($HLblockID,$hlblock_id_battery,$params) : bool
+    {
+        $data = 
+        [
+            'hlblock_id' => (int)$HLblockID,
+            'hlblock_battery' => (int)$hlblock_id_battery,
+            'params' => $params
+        ];
+        $hlblock = new HighloadblockMethod($data['hlblock_id']);
+        $res = $hlblock->update($data['hlblock_battery'],$params);
+        if($res->isSuccess())
+            return true;
+        return false;
     }
 
 }

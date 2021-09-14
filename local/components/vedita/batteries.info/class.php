@@ -3,6 +3,7 @@ use Bitrix\Main\Type;
 use Bitrix\Main\Engine\Contract\Controllerable;
 use lib\HighloadblockObject\HighloadblockObject;
 use lib\HighloadblockBattery\HighloadblockBattery;
+
 class ObjectInfo extends \CBitrixComponent implements Controllerable
 {
     public function configureActions()
@@ -46,6 +47,7 @@ class ObjectInfo extends \CBitrixComponent implements Controllerable
     }
     public function executeComponent()
     {
+        $_SESSION['battery_ID'] = $this->arParams["row"]["ID"];  
         $this->arResult['fields'] = $this->arParams["batteriesinfo"];
         $this->arResult['battery_ID'] = $this->arParams["row"]["ID"];
         $this->arResult['object_name'] = $this->getNameObject();

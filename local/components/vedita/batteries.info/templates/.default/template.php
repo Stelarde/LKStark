@@ -7,6 +7,7 @@
     <div class="main-internal">
     <pre>
 <?
+
 $chargeGraphicData = 
 [
     'today' => 
@@ -148,7 +149,7 @@ $chargeGraphicData =
                                     <p id="battery-info-name" value="<?=$arResult['battery_ID']?>" class="battery-info-title__name"><?=$arResult['fields']['UF_NAME']['VALUE']?></p>
                                     <p  class="battery-info-title__object"><?=$arResult['object_name']?></p>
                                     <p class="battery-info-title__number"><?=$arResult['fields']['UF_SERIAL_NUM']['VALUE']?></p>
-                                    <p class="battery-info-title__technic"><?=$arResult['fields']['UF_TECH_TYPE']['VALUE']?></p>
+                                    <p class="battery-info-title__technic"><?=$arResult['fields']['UF_TECH_TYPE']['VALUE']?> <?=$arResult['fields']['UF_COMMENT_TYPE_EQUIPMENT']['VALUE']?></p>
                                 </div>
                                 <div class="battery-info-settings">
                                     <div class="v-dropdown type-2 left">
@@ -161,7 +162,7 @@ $chargeGraphicData =
                                             <div class="v-dropdown-options-wrap">
                                                 <ul>
                                                     <li><a href="#">Параметры работы АКБ</a></li>
-                                                    <li><a href="#">Редактировать данные</a></li>
+                                                    <li><a data-fancybox data-type="ajax" data-src="<?=SITE_TEMPLATE_PATH?>/popups/popup-changing-battery-data.php" href="?ID=6" class="popup-link">Редактировать данные</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -311,7 +312,14 @@ $chargeGraphicData =
                 <div class="battery-graphics">
                     <div class="battery-graphics-top">
                         <div class="battery-graphics-filter">
-                            фильтр
+                        <form action="#" class="battery-graphics-filter-form">
+                            <div class="battery-graphics-filter-block">
+                                <div class="input date white">
+                                    <input type="text" autocomplete="off" id="datepicker-battery-filter" data-multiple-dates-separator="  -  " placeholder="Выберите период">
+                                </div>
+                                <button type="submit" class="btn-inline">Показать</button>
+                            </div>
+                            </form>
                         </div>
                         <div class="battery-graphics-tabs">
                             <ul>
@@ -560,21 +568,15 @@ BX.ready(function()
                         searchControlProvider: 'yandex#search'
                     })
                    var batts = response["data"]["arBat"];
-                   
-                   batts.map(function(bat){
-                      
-                       var long = bat["UF_LONGITUDE"];
-                       var width = bat["UF_WIDTH"];
+                       var long = batts["UF_LONGITUDE"];
+                       var width = batts["UF_WIDTH"];
                             myMap.geoObjects
                             .add(new ymaps.Placemark([width, long], {
                                 balloonContent: 'цвет <strong>воды пляжа бонди</strong>'
                             }, {
                                 preset: 'islands#icon',
                                 iconColor: '#0095b6'
-                            }))
-                   });
-                            
-                        
+                            }))  
                 });
             });
 });
