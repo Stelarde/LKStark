@@ -10,10 +10,10 @@ $arUrlRewrite=array (
   ),
   5 => 
   array (
-    'CONDITION' => '#^/stranitsa-klienta/#',
+    'CONDITION' => '#^/documents/#',
     'RULE' => '',
-    'ID' => 'vedita:highloadblock.complex',
-    'PATH' => '/stranitsa-klienta/index.php',
+    'ID' => 'bitrix:news',
+    'PATH' => '/documents/index.php',
     'SORT' => 100,
   ),
   2 => 
@@ -32,12 +32,12 @@ $arUrlRewrite=array (
     'PATH' => '/batteries/index.php',
     'SORT' => 100,
   ),
-  5 => 
+  6 => 
   array (
-    'CONDITION' => '#^/documents/#',
+    'CONDITION' => '#^/clients/#',
     'RULE' => '',
-    'ID' => 'bitrix:news',
-    'PATH' => '/documents/index.php',
+    'ID' => 'vedita:client.complex',
+    'PATH' => '/clients/index.php',
     'SORT' => 100,
   ),
   0 => 

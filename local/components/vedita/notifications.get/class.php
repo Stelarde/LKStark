@@ -2,6 +2,7 @@
 
 use Bitrix\Main\Engine\Contract\Controllerable;
 use vedita\HighloadblockNotification;
+use lib\HighloadblockBattery\HighloadblockBattery;
 
 class CDemoSqr extends CBitrixComponent implements Controllerable
 {
@@ -14,7 +15,7 @@ class CDemoSqr extends CBitrixComponent implements Controllerable
                 'prefilters' => [],
                 'postfilters' => []
             ],
-            'ajaxUpdateEvent' =>
+            'ajaxGetEvent' =>
             [
                 'prefilters' => [],
                 'postfilters' => []
@@ -37,14 +38,52 @@ class CDemoSqr extends CBitrixComponent implements Controllerable
             foreach ($arNotifications as $arNotification)
             {
                 if ($arNotification['UF_CHECK'] == false)
-                {
                     $quantity += 1;
-                }
+            }
+            return 
+            [
+                'quantity' => $quantity,
+                'result' => true
+            ];
+        }
+        return ['result' => false];
+    }
+
+    public function ajaxGetEventAction()
+    {
+        $arNotifications = HighloadblockNotification::getNotifications(HL_BLOCK_ID_NOTIFICATIONS);
+        if (!empty($arNotifications))
+        {
+            $html = '<ul>';
+            foreach ($arNotifications as $arNotification)
+            {
+                if ($arNotification['UF_CHECK'] == false)
+                    $html .= '<li class="new-notification"><div class="notifications-desc">';
+                else 
+                    $html .= '<li><div class="notifications-desc">';
 
                 $objDateTime = new DateTime($arNotification['UF_DATE_TIME']);
 
-                $html .= '<li><div class="notifications-desc">';
-                $html .= '<a href="#">АКБ №';
+                $params = 
+                [
+                    'select' => ['ID'],
+                    'filter' => ['UF_SERIAL_NUM' => $arNotification['UF_BATTERY_NUMBER']],
+                    'limit' => 1
+                ];
+
+                $arBattery = HighloadblockBattery::getInfoBattery(getHLBlockIDByName("Battaries"), $params);
+
+                if (!empty($arBattery))
+                {
+                    $html .= '<a href="/batteries/';
+                    $html .= $arBattery[0]['ID'] . '/';
+                }
+                else 
+                {
+                    $html .= '<a href="#';
+                }   
+
+                $html .= '">АКБ №';
                 $html .= $arNotification['UF_BATTERY_NUMBER'];
                 $html .= '</a><p>';
                 $html .= $arNotification['UF_MESSAGE'];
@@ -55,19 +94,15 @@ class CDemoSqr extends CBitrixComponent implements Controllerable
                 $html .= '</p></div></li>';
             }
             $html .= '</ul>';
+
+            $bNotification = HighloadblockNotification::updateCheckNotifications(getHLBlockIDByName('Notifications'));
+            
             return 
             [
                 'html' => $html,
-                'quantity' => $quantity,
                 'result' => true
             ];
         }
         return ['result' => false];
-    }
-
-    public function ajaxUpdateEventAction()
-    {
-        $bNotification = HighloadblockNotification::updateCheckNotifications(getHLBlockIDByName('Notifications'));
-        return ['result' => $bNotification];
     }
 }

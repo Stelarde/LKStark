@@ -8,13 +8,12 @@ BX.ready(function(){
         if (response['data']['result'])
         {
             $('#number-of-notifications').text(response['data']['quantity']);
-            $('.header-notifications-list').append(response['data']['html']);
         }        
     });
 
     $(document).on('click', '.header-notifications-btn', function () 
     {
-        var request = BX.ajax.runComponentAction('vedita:notifications.get', 'ajaxUpdateEvent', 
+        var request = BX.ajax.runComponentAction('vedita:notifications.get', 'ajaxGetEvent', 
         {
             mode:'class'
         });
@@ -23,6 +22,8 @@ BX.ready(function(){
             if (response['data']['result'])
             {
                 $('#number-of-notifications').text('0');
+                $('.header-notifications-list').empty();
+                $('.header-notifications-list').append(response['data']['html']);
             }        
         });
     });

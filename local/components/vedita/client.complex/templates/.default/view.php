@@ -1,16 +1,17 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 
+<?$clientId = $arResult['VARIABLES']['ID'];?>
 
 <div class="grid-item fill grid-dashboard grid-column-gap-30">
     <div class="client-info-wrap">
         <div class="client-info">
             <div class="client-info-img">
-                <img src="<?=$arResult['user']['logoSrc']?>" alt="">
+                <img src="<?=$arResult['users'][$clientId]['logoSrc']?>" alt="">
             </div>
             <div class="client-info-block">
                 <div class="client-info-top">
                     <div class="client-info-top-title">
-                        <p><?=$arResult['user']['WORK_COMPANY']?></p>
+                        <p><?=$arResult['users'][$clientId]['WORK_COMPANY']?></p>
                     </div>
                     <div class="client-info-top-settings">
                          <div class="v-dropdown type-2 right">
@@ -34,11 +35,11 @@
                         <ul>
                             <li>
                                 <p>Контактное лицо</p>
-                                <p><a href="#"><?=$arResult['user']['TITLE']?></a></p>
+                                <p><a href="#"><?=$arResult['users'][$clientId]['TITLE']?></a></p>
                             </li>
                             <li>
                                 <p>Адрес</p>
-                                <p><?=$arResult['user']['UF_ADDRESS']?></p>
+                                <p><?=$arResult['users'][$clientId]['UF_ADDRESS']?></p>
                             </li>
                         </ul>
                     </div>
@@ -46,7 +47,7 @@
                          <ul>
                              <li>
                                  <p>Телефон</p>
-                                 <p><?=$arResult['user']['PERSONAL_PHONE']?></p>
+                                 <p><?=$arResult['users'][$clientId]['PERSONAL_PHONE']?></p>
                              </li>
                          </ul>
                     </div>
@@ -54,7 +55,7 @@
                          <ul>
                              <li>
                                  <p>Заметки</p>
-                                 <p><?=$arResult['user']['PERSONAL_NOTES']?></p>
+                                 <p><?=$arResult['users'][$clientId]['PERSONAL_NOTES']?></p>
                              </li>
                          </ul>
                     </div>
@@ -62,4 +63,31 @@
             </div>
         </div>
     </div>
-</div>    
+</div>   
+ 
+<!-- Таблица объектов -->
+<? 
+$GLOBALS['arFilter'] = ['UF_OBJECT_USER_ID' => $clientId];
+$APPLICATION->IncludeComponent(
+    "vedita:highloadblock.complex",
+    "clientobjects",
+    [
+        "BLOCK_ID"           => getHLBlockIDByName("ObjectBrowser"),
+        "CHECK_PERMISSIONS"  => "Y",
+        "FILTER_NAME"        => "arFilter",
+        "PAGEN_ID"           => "page",
+        "ROWS_PER_PAGE"      => "5",
+        "ROW_KEY"            => "ID",
+        "SEF_FOLDER"         => "/stranitsa-klienta/",
+        "SEF_MODE"           => "Y",
+        "SORT_FIELD"         => "ID",
+        "SORT_ORDER"         => "ASC",
+        "COMPONENT_TEMPLATE" => "clientobjects",
+        "SEF_URL_TEMPLATES"  => [
+            "list" => "",
+            "view" => "#ID#/",
+        ],
+    ],
+    false
+);
+?>
