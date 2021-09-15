@@ -1,5 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<?$this->addExternalJS("/local/components/vedita/clients.get/script.js");?>
+<?$this->addExternalJS("/local/components/vedita/client.complex/script.js");?>
 
 <h1>Клиенты</h1>
     
@@ -200,19 +200,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="v-td " onclick="window.location.href='/stranitsa-klienta/?client_id=<?=$arUser['ID']?>'">
+                        <div class="v-td " onclick="window.location.href='/clients/<?=$arUser['ID']?>/'">
                             <div>
                                 <div class="client-logo">
-                                    <a href="/stranitsa-klienta/?client_id=<?=$arUser['ID']?>">
+                                    <a href="/clients/<?=$arUser['ID']?>/">
                                         <img src="<?=$arUser['logoSrc']?>" alt="">
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="v-td" onclick="window.location.href='/stranitsa-klienta/?client_id=<?=$arUser['ID']?>'"><div><?=$arUser['WORK_COMPANY']?></div></div>
-                        <div class="v-td" onclick="window.location.href='/stranitsa-klienta/?client_id=<?=$arUser['ID']?>'"><div><a href="#"><?=$arUser['countBattary']?></a></div></div>
-                        <div class="v-td" onclick="window.location.href='/stranitsa-klienta/?client_id=<?=$arUser['ID']?>'"><div><a href="#"><?=$arUser['countRentBattary']?></a></div></div>
-                        <div class="v-td new-notification" onclick="window.location.href='/stranitsa-klienta/?client_id=<?=$arUser['ID']?>'"><div><a href="#"><?=$arUser['countEvents']?></a></div></div>                        
+                        <div class="v-td" onclick="window.location.href='/clients/<?=$arUser['ID']?>/'"><div><?=$arUser['WORK_COMPANY']?></div></div>
+                        <div class="v-td" onclick="window.location.href='/clients/<?=$arUser['ID']?>/'"><div><a href="#"><?=$arUser['countBattary']?></a></div></div>
+                        <div class="v-td" onclick="window.location.href='/clients/<?=$arUser['ID']?>/'"><div><a href="#"><?=$arUser['countRentBattary']?></a></div></div>
+                        <div class="v-td new-notification" onclick="window.location.href='/clients/<?=$arUser['ID']?>/'"><div><a href="#"><?=$arUser['countEvents']?></a></div></div>                        
                     </div>
                 <?endforeach;?>
                 </div>

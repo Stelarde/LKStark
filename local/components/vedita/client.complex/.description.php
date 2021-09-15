@@ -4,6 +4,7 @@ $arComponentDescription =
 [
 	"NAME" => "Отображение таблицы клиентов",
 	"DESCRIPTION" => "Выводим таблицу клиентов",
+	"COMPLEX" => "Y",
 	"PATH" => 
 	[
 		"ID" => "Ведита",
