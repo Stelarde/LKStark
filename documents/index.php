@@ -3,7 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Документация");
 ?><main class="main">
 <div class="main-internal">
-	 <?$APPLICATION->IncludeComponent(
+	<?$APPLICATION->IncludeComponent(
 	"bitrix:menu",
 	"top",
 	Array(
