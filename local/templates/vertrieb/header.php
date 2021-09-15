@@ -10,6 +10,7 @@
 <?
 $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/libs/swiper-bundle.min.css", true);
 $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/libs/jquery.fancybox.min.css", true);
+$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/libs/datepicker.min.css", true);
 $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 ?>
 <?$APPLICATION->ShowHead();?>

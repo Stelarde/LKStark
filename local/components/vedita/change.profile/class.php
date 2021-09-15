@@ -112,6 +112,7 @@ class ChangeProfile extends \CBitrixComponent implements Controllerable
     }
     public function executeComponent()
     {
+        $this->arResult["battery_ID"] = $GLOBALS['battery_ID'];
         $this->arResult["user"] = $this->getUserSetting();
         $this->arResult["user_image"] = $this->getUserImage();
         $this->includeComponentTemplate();
