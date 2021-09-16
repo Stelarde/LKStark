@@ -43,7 +43,7 @@
                     </div> 
                     <div class="popup-client-form-btn">
                         <button type="button" class="btn-primary" id="update">Добавить</button> 
-                        <a href="#" class="btn-inline">Отменить</a>
+                        <a href="javascript:;" class="btn-inline" data-fancybox-close>Отменить</a>
                     </div>
                 </div>
             </form>
@@ -51,7 +51,7 @@
     </div>
     <a href="javascript:;" class="closing-cross" data-fancybox-close>
         <svg>
-            <use xlink:href="img/sprite.svg#closing-cross-icon"></use> 
+            <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#closing-cross-icon"></use> 
         </svg>
     </a>
 </div> 
