@@ -5,7 +5,7 @@ $APPLICATION->SetTitle("ЛК контроля ИБП Stark");?>
 global $USER;
 $arGroups = $USER->GetUserGroupArray();
 if (in_array(DEALER_GROUP, $arGroups))
-    LocalRedirect("/batteries/");
+    LocalRedirect("/clients/");
 else
     LocalRedirect("/obozrevatel-obektov/");
 
