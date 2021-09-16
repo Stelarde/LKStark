@@ -209,7 +209,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="v-td" onclick="window.location.href='/clients/<?=$arUser['ID']?>/'"><div><?=$arUser['WORK_COMPANY']?></div></div>
+                        <div class="v-td" onclick="window.location.href='/clients/<?=$arUser['ID']?>/'"><a href="/clients/<?=$arUser['ID']?>/"><div><?=$arUser['WORK_COMPANY']?></div></a></div>
                         <div class="v-td" onclick="window.location.href='/clients/<?=$arUser['ID']?>/'"><div><a href="#"><?=$arUser['countBattary']?></a></div></div>
                         <div class="v-td" onclick="window.location.href='/clients/<?=$arUser['ID']?>/'"><div><a href="#"><?=$arUser['countRentBattary']?></a></div></div>
                         <div class="v-td new-notification" onclick="window.location.href='/clients/<?=$arUser['ID']?>/'"><div><a href="#"><?=$arUser['countEvents']?></a></div></div>                        
