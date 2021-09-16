@@ -21,7 +21,7 @@ BX.ready(function(){
         {
             if (response['data']['result'])
             {
-                $('#number-of-notifications').text('0');
+                // $('#number-of-notifications').text('0');
                 $('.header-notifications-list').empty();
                 $('.header-notifications-list').append(response['data']['html']);
             }        
