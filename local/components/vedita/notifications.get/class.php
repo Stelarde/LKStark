@@ -95,7 +95,7 @@ class CDemoSqr extends CBitrixComponent implements Controllerable
             }
             $html .= '</ul>';
 
-            $bNotification = HighloadblockNotification::updateCheckNotifications(getHLBlockIDByName('Notifications'));
+            // $bNotification = HighloadblockNotification::updateCheckNotifications(getHLBlockIDByName('Notifications'));
             
             return 
             [
