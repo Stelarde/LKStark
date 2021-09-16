@@ -42,7 +42,7 @@
                         <textarea name="personal-notes" id="personal-notes"><?=$arResult['PERSONAL_NOTES']?></textarea>
                     </div> 
                     <div class="popup-client-form-btn">
-                        <button type="button" class="btn-primary" id="update">Добавить</button> 
+                        <button type="button" class="btn-primary" id="update">Сохранить</button> 
                         <a href="javascript:;" class="btn-inline" data-fancybox-close>Отменить</a>
                     </div>
                 </div>
