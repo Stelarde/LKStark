@@ -1,5 +1,18 @@
 <?
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");?>
+<?php
+$arPropsToDisplay = [
+    "ID",
+    "UF_SPECOPS",
+    "UF_SERIAL_NUM",
+    "UF_NAME",
+    "UF_TECH_TYPE", //вид техники
+    "UF_ACTIVITY",
+    "UF_CYCLES",
+    "UF_RES_LEFT",
+    "UF_DATE_UNTIL",
+    "UF_EVENT",
+];
 $APPLICATION->SetTitle("ЛК список батарей");?><?$APPLICATION->IncludeComponent(
 	"vedita:highloadblock.complex",
 	"batteries",
@@ -15,6 +28,7 @@ $APPLICATION->SetTitle("ЛК список батарей");?><?$APPLICATION->Inc
 		"SEF_MODE" => "Y",
 		"SEF_URL_TEMPLATES" => ["list"=>"","view"=>"#ID#/",],
 		"SORT_FIELD" => "ID",
-		"SORT_ORDER" => "ASC"
+		"SORT_ORDER" => "ASC",
+        "DISPLAY_PROPS" => $arPropsToDisplay,
 	)
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
