@@ -1,7 +1,6 @@
 <?
-
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-
+$bShowClients = ($arParams['SHOW_CLIENTS'] == "Y") ? true : false;
 if (!empty($arResult['ERROR']))
 {
 	echo $arResult['ERROR'];
@@ -9,9 +8,12 @@ if (!empty($arResult['ERROR']))
 }
 
 //$GLOBALS['APPLICATION']->SetTitle('Highloadblock List');
-
+/*
 ?>
-
+<pre>
+    <?=print_r($arResult, true);?>
+</pre>
+*/?>
 <div class="grid-item fill">
     <div class="v-table-wrap">
         <div class="v-table battery-client grid-dashboard grid-row-gap-15 fill checked-all">
@@ -21,11 +23,9 @@ if (!empty($arResult['ERROR']))
 
                     <? $i = 0;
                     foreach(array_keys($arResult['tableColumns']) as $sPropName): ?>
-                        <? //var_dump($sPropName);
-                        if($sPropName == 'UF_OBJECT_ERRORS' || $sPropName == 'UF_OBJECT_WARNINGS' || $sPropName == 'UF_WIDTH' || $sPropName == 'UF_LONGITUDE' || $sPropName == 'UF_BATTERY_FOR_RENT')
-                        {
-                            continue;
-                        }
+                        <?
+                        if (!in_array($sPropName, $arParams['DISPLAY_PROPS'])) continue;
+
                         if ($sPropName === "ID")
                         {
                             ?>
@@ -42,7 +42,7 @@ if (!empty($arResult['ERROR']))
                         }
                         // title
                         $arUserField = $arResult['fields'][$sPropName];
-                        $title = $arUserField["LIST_COLUMN_LABEL"]? $arUserField["LIST_COLUMN_LABEL"]: $sPropName;
+                        $title = $arUserField["LIST_COLUMN_LABEL"] != "" ? $arUserField["LIST_COLUMN_LABEL"] : $sPropName;
 
                         if ($sPropName === "UF_ACTIVITY")
                         {
@@ -75,6 +75,7 @@ if (!empty($arResult['ERROR']))
                         
                         ?>
                         <div class="v-th"><div><?=htmlspecialcharsex($title)?></div></div>
+                    <?if (!$bShowClients && ($sPropName == "UF_RES_LEFT" || $sPropName == "UF_DATE_UNTIL")):?><div class="v-th"><div></div></div><?endif;?>
                 <? endforeach; ?>
                 </div>
             </div>
@@ -90,6 +91,7 @@ if (!empty($arResult['ERROR']))
                         <? $i = 0;
                         foreach(array_keys($arResult['tableColumns']) as $sBatteryProp): ?>
                             <?
+                            if (!in_array($sBatteryProp, $arParams['DISPLAY_PROPS'])) continue;
                             $sAdditionalClass = '';
                             $i++;
                             $sPropValue = $arBattery[$sBatteryProp];
@@ -157,7 +159,7 @@ if (!empty($arResult['ERROR']))
 
                             ?>
                             <div class="v-td <?=$sAdditionalClass;?>"><div><?=$sPropValue?></div></div>
-
+                            <?if (!$bShowClients && ($sBatteryProp == "UF_RES_LEFT" || $sBatteryProp == "UF_DATE_UNTIL")):?><div class="v-td <?=$sAdditionalClass;?>"><div></div></div><?endif;?>
                         <? endforeach; ?>
                     </div>
                 <? endforeach; ?>

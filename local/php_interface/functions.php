@@ -20,3 +20,10 @@ function getHLBlockIDByName (string $name) : int
     else
         return $hlblock['ID'];
 }
+
+function isDealer () : bool
+{
+    global $USER;
+    $arGroups = $USER->GetUserGroupArray();
+    return in_array(DEALER_GROUP, $arGroups);
+}
