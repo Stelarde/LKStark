@@ -1,6 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");?>
 <?php
+global $APPLICATION;
 $arPropsToDisplay = [
     "ID",
     "UF_SPECOPS",
@@ -13,6 +14,7 @@ $arPropsToDisplay = [
     "UF_DATE_UNTIL",
     "UF_EVENT",
 ];
+$bShowClients = isDealer() ? 'Y' : 'N';
 $APPLICATION->SetTitle("ЛК список батарей");?><?$APPLICATION->IncludeComponent(
 	"vedita:highloadblock.complex",
 	"batteries",
@@ -30,5 +32,6 @@ $APPLICATION->SetTitle("ЛК список батарей");?><?$APPLICATION->Inc
 		"SORT_FIELD" => "ID",
 		"SORT_ORDER" => "ASC",
         "DISPLAY_PROPS" => $arPropsToDisplay,
+        "SHOW_CLIENTS" => $bShowClients,
 	)
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

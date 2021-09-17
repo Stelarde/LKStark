@@ -1,7 +1,6 @@
 <?
-
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-
+$bShowClients = ($arParams['SHOW_CLIENTS'] == "Y") ? true : false;
 if (!empty($arResult['ERROR']))
 {
 	echo $arResult['ERROR'];
@@ -76,7 +75,7 @@ if (!empty($arResult['ERROR']))
                         
                         ?>
                         <div class="v-th"><div><?=htmlspecialcharsex($title)?></div></div>
-                    <?if ($sPropName == "UF_RES_LEFT" || $sPropName == "UF_DATE_UNTIL"):?><div class="v-th"><div></div></div><?endif;?>
+                    <?if (!$bShowClients && ($sPropName == "UF_RES_LEFT" || $sPropName == "UF_DATE_UNTIL")):?><div class="v-th"><div></div></div><?endif;?>
                 <? endforeach; ?>
                 </div>
             </div>
@@ -160,7 +159,7 @@ if (!empty($arResult['ERROR']))
 
                             ?>
                             <div class="v-td <?=$sAdditionalClass;?>"><div><?=$sPropValue?></div></div>
-                            <?if ($sBatteryProp == "UF_RES_LEFT" || $sBatteryProp == "UF_DATE_UNTIL"):?><div class="v-td <?=$sAdditionalClass;?>"><div></div></div><?endif;?>
+                            <?if (!$bShowClients && ($sBatteryProp == "UF_RES_LEFT" || $sBatteryProp == "UF_DATE_UNTIL")):?><div class="v-td <?=$sAdditionalClass;?>"><div></div></div><?endif;?>
                         <? endforeach; ?>
                     </div>
                 <? endforeach; ?>
