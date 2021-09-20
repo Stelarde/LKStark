@@ -17,6 +17,7 @@
                             <ul>
                                 <li><a href="#">Выберите действие</a></li>
                                 <li><a href="#">Сформировать отчёт</a></li>
+                                <li><a href="#" id="delete">Удалить</a></li>
                             </ul>
                         </div>
                     </div>
@@ -194,7 +195,7 @@
                             <div>
                                 <div class="v-checkbox default">
                                     <label>
-                                        <input type="checkbox" class="checkbox-default">
+                                        <input type="checkbox" class="checkbox-default" data-client-id="<?=$arUser['ID']?>">
                                         <div></div>
                                     </label>
                                 </div>

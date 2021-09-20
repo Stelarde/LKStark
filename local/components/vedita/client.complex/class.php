@@ -5,11 +5,12 @@ if ( ! defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use lib\HighloadblockObject\HighloadblockObject;
 use lib\HighloadblockBattery\HighloadblockBattery;
+use Bitrix\Main\Engine\Contract\Controllerable;
 use Bitrix\Main\Localization\Loc;
 
 Loc::loadMessages(__FILE__);
 
-class ClientComplexComponent extends CBitrixComponent
+class ClientComplexComponent extends CBitrixComponent implements Controllerable
 {
 
 
@@ -38,6 +39,18 @@ class ClientComplexComponent extends CBitrixComponent
 
     /** @var array Массив псевдонимов переменных */
     public $arVariables = [];
+
+    public function configureActions()
+    {
+        return 
+        [
+            'ajaxDeleteEvent' => 
+            [
+                'prefilters' => [],
+                'postfilters' => []
+            ]
+        ];
+    }
 
     /**
      * @return mixed|void
@@ -182,5 +195,30 @@ class ClientComplexComponent extends CBitrixComponent
             }
         }
         return false;
+    }
+
+    public function ajaxDeleteEventAction(string $arClientId)
+    {
+        global $APPLICATION;
+
+        $arClientId = explode(',', $arClientId);
+        foreach ($arClientId as $clientId)
+        {
+            if ($clientId > 0 && is_numeric($clientId))
+            {
+                if (CUser::Delete((int) $clientId))
+                {
+                    return
+                    [
+                        'result' => true,
+                    ];
+                }
+            }
+        }
+
+        return
+        [
+            'result' => false
+        ];
     }
 }
