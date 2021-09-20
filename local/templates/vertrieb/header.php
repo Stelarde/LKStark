@@ -45,15 +45,23 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
         );?>
          <?
             global $USER;
-            $user_id = $USER->GetID();
-            $rsUser = CUser::GetByID($user_id)->Fetch();
-            $file = CFile::ResizeImageGet($rsUser['PERSONAL_PHOTO'], array('width'=>32, 'height'=>32), BX_RESIZE_IMAGE_PROPORTIONAL, true); 
-            $URL = $file['src'];  
+            $userId = $USER->GetID();
+            $rsUser = CUser::GetByID($userId)->Fetch();
+            if(!empty($rsUser['PERSONAL_PHOTO']))
+            {
+                $arFile = CFile::ResizeImageGet($rsUser['PERSONAL_PHOTO'], array('width'=>32, 'height'=>32), BX_RESIZE_IMAGE_PROPORTIONAL, true); 
+                $sUrl = $arFile['src'];  
+            }
+            else
+            {
+                $sUrl = SITE_TEMPLATE_PATH . "/img/no_man.png";  
+            }
+            
         ?>
               <div class="header-info v-dropdown">
                   <a href="javascript:;" class="header-info-btn v-dropdown-btn">
                     <div class="header-info-photo">
-                        <img src="<?=$URL?>" alt="<?=IMAGE_ALT?>">
+                        <img src="<?=$sUrl?>" alt="<?=IMAGE_ALT?>">
                     </div>
                     <div class="header-info-text">
                         <p class="header-info-text-name"><?=$rsUser["NAME"]?></p>

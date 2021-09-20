@@ -382,7 +382,7 @@ document.addEventListener('DOMContentLoaded', function () {
           },
           y: {
             min: 0,
-            max: 80,
+            max: 100,
             ticks: {
               font: {
                 size: 12,

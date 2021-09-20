@@ -111,7 +111,9 @@ class ChangeBattery extends \CBitrixComponent implements Controllerable
         $client_id = $objectBrowser["UF_OBJECT_USER_ID"];
         $rsUser = CUser::GetByID($client_id);
         $arUser = $rsUser->Fetch();
-        return $arUser["WORK_COMPANY"];
+        if(!empty($arUser["WORK_COMPANY"]))
+            return $arUser["WORK_COMPANY"];
+        return "";
     }
     public function executeComponent()
     {
