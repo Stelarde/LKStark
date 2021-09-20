@@ -229,6 +229,8 @@ if ( ! defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)    die();
                     'SORT_FIELD'         => $sSortField,
                     'SORT_ORDER'         => $sSortOrder,
                     'COMPONENT_TEMPLATE' => $arParams['COMPONENT_TEMPLATE'],
+                    "DISPLAY_PROPS"      => $arParams['DISPLAY_PROPS'],
+                    "SHOW_CLIENTS"       => $arParams['SHOW_CLIENTS'],
                 ],
                 false
             ); ?>

@@ -1,12 +1,5 @@
 <?
 $aMenuLinks = Array(
-	Array(
-		"Список батарей", 
-		"/batteries/", 
-		Array(), 
-		Array("src"=>"/local/templates/vertrieb/img/sprite.svg#sidebar-menu-battery-icon"),
-		"" 
-	),
     Array(
         "Клиенты",
         "/clients/",
@@ -14,6 +7,13 @@ $aMenuLinks = Array(
         Array("src"=>"/local/templates/vertrieb/img/sprite.svg#sidebar-menu-clients-icon"),
         ""
     ),
+	Array(
+		"Список батарей", 
+		"/batteries/", 
+		Array(), 
+		Array("src"=>"/local/templates/vertrieb/img/sprite.svg#sidebar-menu-battery-icon"),
+		"" 
+	),
     Array(
         "Календарь",
         "/calendar/",
