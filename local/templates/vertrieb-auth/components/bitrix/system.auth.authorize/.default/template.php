@@ -2,8 +2,8 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 ?>
 <?
-ShowMessage($arParams["~AUTH_RESULT"]);
 ShowMessage($arResult['ERROR_MESSAGE']);
+
 ?>
 
 <main class="main">
@@ -17,6 +17,7 @@ ShowMessage($arResult['ERROR_MESSAGE']);
 
 						<form name="form_auth" class="form-login" method="post" target="_top" action="<?=$arResult["AUTH_URL"]?>">
 						<p class="form-title type-1">Вход</p>
+							<?=ShowMessage($arParams["~AUTH_RESULT"]);?>
 							<input type="hidden" name="AUTH_FORM" value="Y" />
 							<input type="hidden" name="TYPE" value="AUTH" />
 							<?if ($arResult["BACKURL"] <> ''):?>

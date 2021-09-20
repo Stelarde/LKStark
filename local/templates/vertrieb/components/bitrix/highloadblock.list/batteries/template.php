@@ -1,7 +1,6 @@
 <?
-
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-
+$bShowClients = ($arParams['SHOW_CLIENTS'] == "Y") ? true : false;
 if (!empty($arResult['ERROR']))
 {
 	echo $arResult['ERROR'];
@@ -9,9 +8,12 @@ if (!empty($arResult['ERROR']))
 }
 
 //$GLOBALS['APPLICATION']->SetTitle('Highloadblock List');
-
+/*
 ?>
-
+<pre>
+    <?=print_r($arResult, true);?>
+</pre>
+*/?>
 <div class="grid-item fill">
     <div class="v-table-wrap">
         <div class="v-table battery-client grid-dashboard grid-row-gap-15 fill checked-all">
@@ -21,7 +23,9 @@ if (!empty($arResult['ERROR']))
 
                     <? $i = 0;
                     foreach(array_keys($arResult['tableColumns']) as $sPropName): ?>
-                        <? //var_dump($sPropName);
+                        <?
+                        if (!in_array($sPropName, $arParams['DISPLAY_PROPS'])) continue;
+
                         if ($sPropName === "ID")
                         {
                             ?>
@@ -38,7 +42,7 @@ if (!empty($arResult['ERROR']))
                         }
                         // title
                         $arUserField = $arResult['fields'][$sPropName];
-                        $title = $arUserField["LIST_COLUMN_LABEL"]? $arUserField["LIST_COLUMN_LABEL"]: $sPropName;
+                        $title = $arUserField["LIST_COLUMN_LABEL"] != "" ? $arUserField["LIST_COLUMN_LABEL"] : $sPropName;
 
                         if ($sPropName === "UF_ACTIVITY")
                         {
@@ -68,11 +72,10 @@ if (!empty($arResult['ERROR']))
                             <?
                             continue;
                         }
-
+                        
                         ?>
                         <div class="v-th"><div><?=htmlspecialcharsex($title)?></div></div>
-                        <?if ($sPropName == "UF_RES_LEFT"):?><div class="v-th"></div><?endif;?>
-                        <?if ($sPropName == "UF_DATE_UNTIL"):?><div class="v-th"></div><?endif;?>
+                    <?if (!$bShowClients && ($sPropName == "UF_RES_LEFT" || $sPropName == "UF_DATE_UNTIL")):?><div class="v-th"><div></div></div><?endif;?>
                 <? endforeach; ?>
                 </div>
             </div>
@@ -88,10 +91,14 @@ if (!empty($arResult['ERROR']))
                         <? $i = 0;
                         foreach(array_keys($arResult['tableColumns']) as $sBatteryProp): ?>
                             <?
+                            if (!in_array($sBatteryProp, $arParams['DISPLAY_PROPS'])) continue;
                             $sAdditionalClass = '';
                             $i++;
                             $sPropValue = $arBattery[$sBatteryProp];
-
+                            if($sBatteryProp == 'UF_OBJECT_ERRORS' || $sBatteryProp == 'UF_OBJECT_WARNINGS' || $sBatteryProp == 'UF_WIDTH' || $sBatteryProp == 'UF_LONGITUDE' || $sBatteryProp == 'UF_BATTERY_FOR_RENT')
+                        {
+                            continue;
+                        }
                             if ($sBatteryProp === 'ID')
                             {
                                 $iBattaryId = (int) $sPropValue;
@@ -152,8 +159,7 @@ if (!empty($arResult['ERROR']))
 
                             ?>
                             <div class="v-td <?=$sAdditionalClass;?>"><div><?=$sPropValue?></div></div>
-                            <?if ($sBatteryProp == "UF_RES_LEFT"):?><div class="v-td"><div></div></div><?endif;?>
-                            <?if ($sBatteryProp == "UF_DATE_UNTIL"):?><div class="v-td"><div></div></div><?endif;?>
+                            <?if (!$bShowClients && ($sBatteryProp == "UF_RES_LEFT" || $sBatteryProp == "UF_DATE_UNTIL")):?><div class="v-td <?=$sAdditionalClass;?>"><div></div></div><?endif;?>
                         <? endforeach; ?>
                     </div>
                 <? endforeach; ?>
@@ -173,6 +179,7 @@ if (!empty($arResult['ERROR']))
 
 
 <?php
+/*
 if ($arParams['ROWS_PER_PAGE'] > 0):
 	$APPLICATION->IncludeComponent(
 		'bitrix:main.pagenavigation',
@@ -183,52 +190,6 @@ if ($arParams['ROWS_PER_PAGE'] > 0):
 		),
 		false
 	);
-endif;
+endif;*/
 ?>
 
-
-<form id="hlblock-table-form" action="" method="get">
-	<input type="hidden" name="BLOCK_ID" value="<?=htmlspecialcharsbx($arParams['BLOCK_ID'])?>">
-	<input type="hidden" name="sort_id" value="">
-	<input type="hidden" name="sort_type" value="">
-</form>
-
-<script type="text/javascript">
-	BX.ready(function(){
-		var rows = BX.findChildren(BX('report-result-table'), {tag:'th'}, true);
-		for (i in rows)
-		{
-			var ds = rows[i].getAttribute('defaultSort');
-			if (ds == '')
-			{
-				BX.addClass(rows[i], 'report-column-disabled-sort')
-				continue;
-			}
-
-			BX.bind(rows[i], 'click', function(){
-				var colId = this.getAttribute('colId');
-				var sortType = '';
-
-				var isCurrent = BX.hasClass(this, 'reports-selected-column');
-
-				if (isCurrent)
-				{
-					var currentSortType = BX.hasClass(this, 'reports-head-cell-top') ? 'ASC' : 'DESC';
-					sortType = currentSortType == 'ASC' ? 'DESC' : 'ASC';
-				}
-				else
-				{
-					sortType = this.getAttribute('defaultSort');
-				}
-
-				var idInp = BX.findChild(BX('hlblock-table-form'), {attr:{name:'sort_id'}});
-				var typeInp = BX.findChild(BX('hlblock-table-form'), {attr:{name:'sort_type'}});
-
-				idInp.value = colId;
-				typeInp.value = sortType;
-
-				BX.submit(BX('hlblock-table-form'));
-			});
-		}
-	});
-</script>

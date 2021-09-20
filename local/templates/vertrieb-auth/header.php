@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<title><?$APPLICATION->ShowTitle()?></title>
+    <title><?$APPLICATION->ShowTitle()?></title>
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <?$APPLICATION->ShowMeta("description");?>
 <?$APPLICATION->ShowMeta("robots");?>
   <meta charset="UTF-8">
@@ -9,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?
 $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/libs/swiper-bundle.min.css", true);
-$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/libs/jquery.fancybox.min.cs", true);
+$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/libs/jquery.fancybox.min.css", true);
 $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 
 ?>

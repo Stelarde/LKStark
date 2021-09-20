@@ -4,19 +4,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
   <?$APPLICATION->ShowMeta("description");?>
     <?$APPLICATION->ShowMeta("robots");?>
   <title><?$APPLICATION->ShowTitle()?></title>
 <?
 $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/libs/swiper-bundle.min.css", true);
 $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/libs/jquery.fancybox.min.css", true);
+$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/libs/datepicker.min.css", true);
 $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 ?>
 <?$APPLICATION->ShowHead();?>
 </head>
-<?$APPLICATION->ShowPanel();?>
+
 <body>  
-<?$APPLICATION->ShowPanel();?>
 
 <header id="header" class="header">
       <div class="header-block">
@@ -29,7 +30,7 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
                 </a>
             </div>
             <div class="header-back-btn">
-                <a href="#" class="btn-icon">
+                <a href="javascript:;" class="btn-icon" onclick="window.history.go(-1); return false;">
                     <svg>
                         <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#back-arrow-icon"></use>
                     </svg>
@@ -43,14 +44,29 @@ $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css", true);
 	        "",
             Array()
         );?>
+         <?
+            global $USER;
+            $userId = $USER->GetID();
+            $rsUser = CUser::GetByID($userId)->Fetch();
+            if(!empty($rsUser['PERSONAL_PHOTO']))
+            {
+                $arFile = CFile::ResizeImageGet($rsUser['PERSONAL_PHOTO'], array('width'=>32, 'height'=>32), BX_RESIZE_IMAGE_PROPORTIONAL, true); 
+                $sUrl = $arFile['src'];  
+            }
+            else
+            {
+                $sUrl = SITE_TEMPLATE_PATH . "/img/no_man.png";  
+            }
+            
+        ?>
               <div class="header-info v-dropdown">
                   <a href="javascript:;" class="header-info-btn v-dropdown-btn">
                     <div class="header-info-photo">
-                        <img src="<?=SITE_TEMPLATE_PATH?>/img/info-photo.jpg" alt="<?=IMAGE_ALT?>">
+                        <img src="<?=$sUrl?>" alt="<?=IMAGE_ALT?>">
                     </div>
                     <div class="header-info-text">
-                        <p class="header-info-text-name">Константин</p>
-                        <p class="header-info-text-position">Организация</p>
+                        <p class="header-info-text-name"><?=$rsUser["NAME"]?></p>
+                        <p class="header-info-text-position"><?=$rsUser["WORK_COMPANY"]?></p>
                     </div>
                     <div class="header-info-arrow">
                         <span>

@@ -50,11 +50,14 @@ document.addEventListener('DOMContentLoaded', function () {
               vDrowdown.classList.add('is-open'); // headerInfoMenu.style.height = headerInfoMenu.scrollHeight + "px";
             }
           });
-          document.addEventListener('click', function (e) {
-            if (!e.target.closest('.v-dropdown')) {
-              vDrowdown.classList.remove('is-open'); // headerInfoMenu.style.height = 0;
-            }
-          });
+
+          if (!vDrowdown.classList.contains('filter')) {
+            document.addEventListener('click', function (e) {
+              if (!e.target.closest('.v-dropdown')) {
+                vDrowdown.classList.remove('is-open'); // headerInfoMenu.style.height = 0;
+              }
+            });
+          }
         }
       }
     });
@@ -208,24 +211,64 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 500);
   }
 
+  $("#datepicker-battery-filter").datepicker({
+    range: 'period',
+    changeMonth: false,
+    changeYear: false
+  });
+  $("#datepicker-event-log-filter").datepicker({
+    range: 'period',
+    changeMonth: false,
+    changeYear: false
+  }); // изменение кастомного добавления файлов
+
+  var attachFileSupport = document.querySelectorAll('.attach-file');
+  attachFile(attachFileSupport);
   var graphicsAll = document.querySelectorAll('.graphics-item'); // static data
 
-  var dataObjectValues = {
-    0: [67, 16, 9],
-    1: [16, 9, 67],
-    2: [60, 16, 16],
-    3: [20, 54, 16],
-    4: [16, 13, 63]
-  },
-      dataBatteryValues = {
-    0: [67, 16, 9],
-    1: [16, 9, 67],
-    2: [60, 16, 16],
-    3: [20, 54, 16],
-    4: [16, 13, 63]
-  },
-      backgroundColors = ['#FD8204', '#43B02A', '#4F4F4F'],
-      labelsValue = ["Работа", "Заряд", "Простой"];
+  var backgroundColors = ['#FD8204', '#43B02A', '#4F4F4F'];
+  var objGraphicsData = {
+    0: {
+      activity: {
+        percent: [64, 35, 10],
+        time: {
+          charge: '12 ч 45 мин',
+          discharge: '23 ч 25 мин',
+          downtime: '15 ч 30 мин'
+        }
+      }
+    },
+    1: {
+      activity: {
+        percent: [34, 22, 21],
+        time: {
+          charge: '12 ч 40 мин',
+          discharge: '23 ч 25 мин',
+          downtime: '15 ч 30 мин'
+        }
+      }
+    },
+    2: {
+      activity: {
+        percent: [34, 22, 21],
+        time: {
+          charge: '12 ч 40 мин',
+          discharge: '23 ч 25 мин',
+          downtime: '15 ч 30 мин'
+        }
+      }
+    },
+    3: {
+      activity: {
+        percent: [34, 22, 21],
+        time: {
+          charge: '12 ч 40 мин',
+          discharge: '23 ч 25 мин',
+          downtime: '15 ч 30 мин'
+        }
+      }
+    }
+  };
   var options = {
     maintainAspectRatio: false,
     responsive: true,
@@ -250,14 +293,19 @@ document.addEventListener('DOMContentLoaded', function () {
       var graphicCurrent = graphicsAll[i];
 
       if (graphicCurrent) {
+        var batteryPieObjectWork = document.querySelector('.object-graphic-data .data-work span'),
+            batteryPieObjectCharge = document.querySelector('.object-graphic-data .data-charge span'),
+            batteryPieObjectstand = document.querySelector('.object-graphic-data .data-stand span');
+        batteryPieObjectWork.innerHTML = objGraphicsData[i].activity.time.charge;
+        batteryPieObjectCharge.innerHTML = objGraphicsData[i].activity.time.discharge;
+        batteryPieObjectstand.innerHTML = objGraphicsData[i].activity.time.downtime;
         var ctx = graphicCurrent === null || graphicCurrent === void 0 ? void 0 : graphicCurrent.getContext('2d');
         var myChart = new Chart(ctx, {
           type: 'pie',
           plugins: [ChartDataLabels],
           data: {
-            labels: [].concat(labelsValue),
             datasets: [{
-              data: _toConsumableArray(dataObjectValues[i]),
+              data: _toConsumableArray(objGraphicsData[i].activity.percent),
               backgroundColor: [].concat(backgroundColors)
             }]
           },
@@ -277,122 +325,6 @@ document.addEventListener('DOMContentLoaded', function () {
       quarterBtn = document.getElementById('tab-btn-quarter'),
       yearBtn = document.getElementById('tab-btn-year'),
       allBtn = document.getElementById('tab-btn-all');
-  var chargeGraphicData = {
-    today: {
-      labels: ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
-      charge: [62, 73, 49],
-      discharge: [70, 6, 19],
-      area: [45, 2, 45, 1, 44],
-      cycles: {
-        all: 4,
-        day: 5,
-        partly: 4
-      },
-      activity: {
-        percent: [64, 35, 10],
-        time: {
-          charge: '12 ч 45 мин',
-          discharge: '23 ч 25 мин',
-          downtime: '15 ч 30 мин'
-        }
-      }
-    },
-    week: {
-      labels: ['05 пн', '06 вт', '07 ср', '08 чт', '09 пт', '10 сб', '11 вс'],
-      charge: [12, 45, 22, 10, 34, 43],
-      discharge: [45, 70, 30, 10, 34, 56],
-      area: [23, 3, 45, 55, 54],
-      cycles: {
-        all: 30,
-        day: 2.5,
-        partly: 34
-      },
-      activity: {
-        percent: [60, 14, 25],
-        time: {
-          charge: '22 ч 45 мин',
-          discharge: '13 ч 15 мин',
-          downtime: '5 ч 30 мин'
-        }
-      }
-    },
-    month: {
-      labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'],
-      charge: [75, 33, 74, 32, 5, 11, 34, 76],
-      discharge: [12, 45, 22, 10, 34, 43, 64],
-      area: [23, 3, 45, 55, 54],
-      cycles: {
-        all: 10,
-        day: 2.5,
-        partly: 2
-      },
-      activity: {
-        percent: [26, 14, 22],
-        time: {
-          charge: '2 ч 45 мин',
-          discharge: '3 ч 10 мин',
-          downtime: '15 ч 35 мин'
-        }
-      }
-    },
-    quarter: {
-      labels: ['Январь', 'Февраль', 'Март'],
-      charge: [50, 60, 10],
-      discharge: [12, 45, 22],
-      area: [23, 3, 45, 55, 54],
-      cycles: {
-        all: 5,
-        day: 3,
-        partly: 55
-      },
-      activity: {
-        percent: [3, 17, 51],
-        time: {
-          charge: '2 ч 35 мин',
-          discharge: '3 ч 15 мин',
-          downtime: '15 ч 45 мин'
-        }
-      }
-    },
-    year: {
-      labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
-      charge: [10, 50, 33],
-      discharge: [75, 33, 74],
-      area: [72, 59, 74, 70, 55],
-      cycles: {
-        all: 3,
-        day: 1,
-        partly: 5
-      },
-      activity: {
-        percent: [15, 20, 20],
-        time: {
-          charge: '12 ч 30 мин',
-          discharge: '3 ч 10 мин',
-          downtime: '14 ч 40 мин'
-        }
-      }
-    },
-    all: {
-      labels: ['2018', '2019', '2020', '2021'],
-      charge: [10, 50, 33],
-      discharge: [75, 33, 74],
-      area: [72, 59, 74, 70, 55],
-      cycles: {
-        all: 3,
-        day: 1,
-        partly: 5
-      },
-      activity: {
-        percent: [33, 41, 11],
-        time: {
-          charge: '1 ч 10 мин',
-          discharge: '39 ч 15 мин',
-          downtime: '14 ч 40 мин'
-        }
-      }
-    }
-  };
 
   if (batteryPie) {
     var batteryPieWork = document.querySelector('.battery-graphics-activity-data .data-work span'),
@@ -450,7 +382,7 @@ document.addEventListener('DOMContentLoaded', function () {
           },
           y: {
             min: 0,
-            max: 80,
+            max: 100,
             ticks: {
               font: {
                 size: 12,
@@ -497,6 +429,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (allBtn) {
     eventClickTabs(allBtn, batteryBarChart, _objectSpread({}, dataAll), batteryPieChart, chargeGraphicData.all, batteryPieArray, batteryCyclesArray);
+  }
+
+  var documentationSlider = document.querySelector('.documentation .swiper');
+
+  if (documentationSlider) {
+    var documentationSwiper = new Swiper(documentationSlider, {
+      loop: false,
+      centeredSlides: true,
+      observer: true,
+      spaceBetween: 350,
+      observerParents: true,
+      observerSlideChildren: true,
+      slidesPerGroup: 1,
+      slidesPerView: 1,
+      pagination: {
+        el: '.documentation .swiper-pagination',
+        type: 'fraction'
+      },
+      navigation: {
+        nextEl: '.documentation .swiper-button-next',
+        prevEl: '.documentation .swiper-button-prev'
+      }
+    });
   }
 
   $('.popup-link').fancybox({
@@ -559,7 +514,13 @@ function handleResize() {
   } else {
     document.children[0].style.fontSize = '0.666667px';
   }
-}
+} // function updateSwiper(documentationSlider, documentationSwiper) {
+//     if(documentationSlider) {
+//         documentationSwiper.updateSize();
+//         console.log(documentationSwiper);
+//     }
+// }
+
 
 function addFile(addFileBlocks) {
   if (addFileBlocks.length) {
@@ -584,6 +545,38 @@ function addFile(addFileBlocks) {
         addFileInput.value = '';
         addFileDiv.style.backgroundImage = '';
         deleteFileBtn.style.display = 'none';
+      });
+    });
+  }
+}
+
+function attachFile(attachFileBlocks) {
+  if (attachFileBlocks.length) {
+    attachFileBlocks.forEach(function (attachFileBlockCurrent) {
+      var attachFileInput = attachFileBlockCurrent.querySelector('input'),
+          attachFileDiv = attachFileBlockCurrent.querySelector('.attach-file-block div'),
+          attachDeleteFileBtn = attachFileBlockCurrent.querySelector('.delete-file');
+      attachFileInput.addEventListener('change', function () {
+        if (this.files.length) {
+          var filesArray = [];
+          var fileList = this.files;
+          Array.from(fileList).forEach(function (fileCurrent) {
+            var fileName = fileCurrent.name;
+            filesArray.push(fileName);
+            attachFileDiv.classList.add('fill');
+          });
+          attachFileDiv.innerHTML = [].concat(filesArray);
+
+          if (this.files.length) {
+            attachDeleteFileBtn.style.display = 'block';
+          }
+        }
+      });
+      attachDeleteFileBtn.addEventListener('click', function () {
+        attachFileInput.value = '';
+        attachFileDiv.innerHTML = 'Прикрепить файлы';
+        attachFileDiv.classList.remove('fill');
+        attachDeleteFileBtn.style.display = 'none';
       });
     });
   }
