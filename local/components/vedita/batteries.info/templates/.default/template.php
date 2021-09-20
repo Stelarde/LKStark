@@ -5,48 +5,49 @@
 
 <main class="main">
     <div class="main-internal">
+        
     <pre>
-<?
+    <?
 
 $chargeGraphicData = 
 [
     'today' => 
     [
         'labels' => ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
-        'charge' => [62,73,49],
-        'discharge' => [70, 6, 19],
-        'area'=> [45, 2, 45, 1, 44],
+        'charge' => [20,20,20,20,50,70,70,70,70,70,70,20],
+        'discharge' => [0,0,0,0,0,0,0,0,0,0,0,0],
+        'area'=> [20,20,20,20,50,70,70,70,70,70,70,20],
         'cycles' => [
-            'all' => 4,
-            'day' => 5,
-            'partly' => 4
+            'all' => 0,
+            'day' => 0,
+            'partly' => 1
         ],
         'activity' => [
-            'percent' => [64, 35, 10],
+            'percent' => [59.6, 0, 40.4],
             'time' => [
-              'charge' => '12 ч 45 мин',
-              'discharge' => '23 ч 25 мин',
-              'downtime' => '15 ч 30 мин'
+              'charge' => '14 ч 30 мин',
+              'discharge' => '0 ч 0 мин',
+              'downtime' => '9 ч 30 мин'
             ]
         ]
     ],
     'week' => 
     [
         'labels' => ['05 пн', '06 вт', '07 ср', '08 чт', '09 пт', '10 сб', '11 вс'],
-        'charge' => [12, 45, 22, 10, 34, 43],
-        'discharge' => [45, 70, 30, 10, 34, 56],
-        'area'=> [23, 3, 45, 55, 54],
+        'charge' => [47.5, 42.5, 56.5, 60.5, 60.5, 0, 0],
+        'discharge' => [0, 0, 0, 0, 70, 75, 75],
+        'area'=> [47.5, 42.5, 56.5, 60.5, 70, 75, 75],
         'cycles' => [
-            'all' => 30,
-            'day' => 2.5,
-            'partly' => 34
+            'all' => 1,
+            'day' => 0,
+            'partly' => 2
         ],
         'activity' => [
-            'percent' => [60, 14, 25],
+            'percent' => [45.8, 39.4, 14.8],
             'time' => [
-              'charge' => '22 ч 45 мин',
-              'discharge' => '13 ч 15 мин',
-              'downtime' => '5 ч 30 мин'
+              'charge' => '75 ч 30 мин',
+              'discharge' => '65 ч 0 мин',
+              'downtime' => '27 ч 30 мин'
             ]
         ]
     ],
@@ -199,7 +200,7 @@ $chargeGraphicData =
                                     </div>
                                     <div>
                                         <p>Полных циклов заряда за всё время</p>
-                                        <span>52</span>
+                                        <span>105</span>
                                     </div>
                                     <div>
                                         <div>
@@ -222,7 +223,7 @@ $chargeGraphicData =
                         <p class="battery-effectiveness__title">Эффективность</p>
                         <div class="battery-effectiveness-graphic-wrap">
                             <div class="battery-effectiveness-graphic-persent">
-                                <span>77</span>%
+                                <span>98</span>%
                             </div>
                             <div class="battery-effectiveness-graphic">
                                 <div class="battery-effectiveness-graphic-arrow">
@@ -264,7 +265,7 @@ $chargeGraphicData =
                                     </div>
                                 </div>
                             </div>
-                            <div class="object-resource-value">76%</div>
+                            <div class="object-resource-value">96.5%</div>
                         </div>
                     </div>
                     <div class="battery-data">
@@ -274,15 +275,15 @@ $chargeGraphicData =
                         </div>
                         <div class="battery-data-item">
                             <p class="battery-data-item__title">Ток</p>
-                            <p class="battery-data-item__value">200 А*ч</p>
+                            <p class="battery-data-item__value">200 А</p>
                         </div>
                         <div class="battery-data-item">
                             <p class="battery-data-item__title">Температура</p>
-                            <p class="battery-data-item__value">43 °С</p>
+                            <p class="battery-data-item__value">25 °С</p>
                         </div>
                         <div class="battery-data-item">
                             <p class="battery-data-item__title">Уровень заряда</p>
-                            <p class="battery-data-item__value">56%</p>
+                            <p class="battery-data-item__value">80%</p>
                         </div>
                         <div class="battery-data-item">
                             <p class="battery-data-item__title">Аренда</p>
