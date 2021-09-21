@@ -18,7 +18,7 @@ $dateStart = "07.05.2019";
 $periodUse = "(2г 2мес 1д)";
 $voltage = 0;
 $temperature = 12;
-$current = 200;
+$current = 0;
 $charge_level = 80;
 $chargeGraphicData = 
 [
