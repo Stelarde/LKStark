@@ -8,126 +8,137 @@
         
     <pre>
     <?
-
+$fullCycles = 105;
+$givenAway = 34.1;
+$received = 34.6;
+$effectiveness = $givenAway/($received/100);
+$remainingResource = (3000 - $fullCycles) * 100 / 3000;
+$dateMake = "05.03.2019";
+$dateStart = "07.05.2019";
+$periodUse = "(2г 2мес 1д)";
+$voltage = 0;
+$temperature = 12;
+$current = 200;
+$charge_level = 80;
 $chargeGraphicData = 
 [
     'today' => 
     [
         'labels' => ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
-        'charge' => [20,20,20,20,50,70,70,70,70,70,70,20],
-        'discharge' => [0,0,0,0,0,0,0,0,0,0,0,0],
-        'area'=> [20,20,20,20,50,70,70,70,70,70,70,20],
+        'charge' => [70,70,0,0,0,0,0,0,0,70,70,70],
+        'discharge' => [0,0,40,20,50,70,30,70,40,0,0,0] ,
+        'area'=> [90,100,90,80,70,60,50,40,30,70,100,100],
         'cycles' => [
-            'all' => 0,
-            'day' => 0,
+            'all' => 1,
+            'day' => 1,
             'partly' => 1
         ],
         'activity' => [
-            'percent' => [59.6, 0, 40.4],
+            'percent' => [54.2, 41.7, 4.1],
             'time' => [
-              'charge' => '14 ч 30 мин',
-              'discharge' => '0 ч 0 мин',
-              'downtime' => '9 ч 30 мин'
+              'charge' => '13 ч 0 мин',
+              'discharge' => '10 ч 0 мин',
+              'downtime' => '1 ч 0 мин'
             ]
         ]
     ],
     'week' => 
     [
-        'labels' => ['05 пн', '06 вт', '07 ср', '08 чт', '09 пт', '10 сб', '11 вс'],
-        'charge' => [47.5, 42.5, 56.5, 60.5, 60.5, 0, 0],
-        'discharge' => [0, 0, 0, 0, 70, 75, 75],
-        'area'=> [47.5, 42.5, 56.5, 60.5, 70, 75, 75],
+        'labels' => ['','20 пн', ' ',  ' ', '21 вт', ' ', '22 ср', ' ', '23 чт', ' ', '24 пт', ' ', '25 сб', ' ', '26 вс'],
+        'charge' => [0,70, 0 , 0 ,70,0 , 70,0],
+        'discharge' => [0,46.25, 0, 0,30,0 ,45.7],
+        'area'=> [100,70,30,60,100,40,100, 31],
         'cycles' => [
-            'all' => 1,
-            'day' => 0,
-            'partly' => 2
+            'all' => 3,
+            'day' => 1,
+            'partly' => 3
         ],
         'activity' => [
-            'percent' => [45.8, 39.4, 14.8],
+            'percent' => [53.5, 40.3, 6.2],
             'time' => [
-              'charge' => '75 ч 30 мин',
-              'discharge' => '65 ч 0 мин',
-              'downtime' => '27 ч 30 мин'
+              'charge' => '38 ч 30 мин',
+              'discharge' => '29 ч 0 мин',
+              'downtime' => '3 ч 30 мин'
             ]
         ]
     ],
     'month' => 
     [
-        'labels' => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'],
-        'charge' => [75, 33, 74, 32, 5, 11, 34, 76],
-        'discharge' => [12, 45, 22, 10, 34, 43, 64],
-        'area'=> [23, 3, 45, 55, 54],
-        'cycles' => [
-            'all' => 10,
-            'day' => 2.5,
-            'partly' => 2
+        'labels' => ['','1', '', '2', '', '3', '', '4', '', '5', '', '6', '', '7', '', '8' , '', '9', '', '10', '', '11', '', '12','', '13', '', '14', '', '15', '', '16', '', '17', '', '18', '', '19', '', '20', '', '21', '', '22', '', '23', '', '24', '', '25', '', '26', '', '27', '', '28', '', '29', '', '30', '', '31'],
+        'charge' => [0,70, 0 , 0 ,70,0 , 70,0,70,0 ,70,0,70,0 , 70,0, 70,0 , 70,0, 70,0 , 70,0, 70,0 , 70,0, 70,0 , 70,0,70,0 , 70,0, 70,0 , 70,0, 70,0 , 70,0, 70,0],
+        'discharge' => [0,46.25, 0, 0,30,0 ,56.25, 0,20,0 ,66.25, 0,35,0 ,26.25, 0,40,0 ,46.25, 0,34,0 ,51.25, 0,40,0 ,66.25, 0,33,0 ,36.25, 0,50,0 ,56.25, 0,33,0 ,26.25, 0,46.25,0 ,30,0 ,45.7],
+        'area'=> [100,70,30,70,100,40,100,20,100,50,100,10,100,36,100,45,100,35,100,30,100,38,100,24,100,35,100,10,100,36,100,33,100,24,100,20,100,38,100,43,100,30,100,40,100,31],
+        'cycles' => [   
+            'all' => 20,
+            'day' => 1,
+            'partly' => 19
         ],
         'activity' => [
-            'percent' => [26, 14, 22],
+            'percent' => [53, 40.3, 6.7],
             'time' => [
-              'charge' => '2 ч 45 мин',
-              'discharge' => '3 ч 10 мин',
-              'downtime' => '15 ч 35 мин'
+              'charge' => '279 ч 45 мин',
+              'discharge' => '213 ч 10 мин',
+              'downtime' => '36 ч 5 мин'
             ]
         ]
     ],
     'quarter' => 
     [
-        'labels' => ['Январь', 'Февраль', 'Март'],
-        'charge' => [50, 60, 10],
-        'discharge' => [12, 45, 22],
-        'area'=> [23, 3, 45, 55, 54],
+        'labels' => ['','Июль','', 'Август','', 'Сентябрь'],
+        'charge' => [0,70,0, 70,0, 70],
+        'discharge' => [0,40,0, 50,0, 40],
+        'area'=> [100,60, 35, 100, 30, 100,35],
         'cycles' => [
-            'all' => 5,
-            'day' => 3,
-            'partly' => 55
+            'all' => 78,
+            'day' => 1,
+            'partly' => 60
         ],
         'activity' => [
-            'percent' => [3, 17, 51],
+            'percent' => [53.7, 39.1, 7.2],
             'time' => [
-              'charge' => '2 ч 35 мин',
-              'discharge' => '3 ч 15 мин',
-              'downtime' => '15 ч 45 мин'
+              'charge' => '1070 ч 25 мин',
+              'discharge' => '780 ч 15 мин',
+              'downtime' => '170 ч 45 мин'
             ]
         ]
     ],
     'year' => 
     [
-        'labels' => ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
-        'charge' => [10, 50, 33],
-        'discharge' => [75, 33, 74],
-        'area'=> [72, 59, 74, 70, 55],
+        'labels' => ['','Январь', '','','Февраль', '','Март','', 'Апрель','', 'Май','', 'Июнь','', 'Июль','', 'Август','', 'Сентябрь','', 'Октябрь','', 'Ноябрь','', 'Декабрь'],
+        'charge' => [0,70,0,0, 70,0, 70 , 0,70,0, 70,0, 70,0,70,0, 70,0, 70],
+        'discharge' => [0,40,0,0, 37,0, 44,0,30,0, 45,0, 35,0,40,0, 50,0, 40],
+        'area'=> [100, 60, 35, 60, 100, 30, 100,35,100, 35, 100, 30, 100,35,100, 35, 100,30,100,35],
         'cycles' => [
-            'all' => 3,
+            'all' => 224,
             'day' => 1,
-            'partly' => 5
+            'partly' => 210
         ],
         'activity' => [
-            'percent' => [15, 20, 20],
+            'percent' => [49.7, 44, 6.3],
             'time' => [
-              'charge' => '12 ч 30 мин',
-              'discharge' => '3 ч 10 мин',
-              'downtime' => '14 ч 40 мин'
+              'charge' => '3300 ч 30 мин',
+              'discharge' => '2800 ч 10 мин',
+              'downtime' => '510 ч 40 мин'
             ]
         ]
     ],
     'all' => 
     [
-        'labels' => ['2018', '2019', '2020', '2021'],
-        'charge' => [10, 50, 33],
-        'discharge' => [75, 33, 74],
-        'area'=> [72, 59, 74, 70, 55],
+        'labels' => ['','2019','', '2020','', '2021'],
+        'charge' => [0,70,0,70,0,70],
+        'discharge' => [0,35, 0,30, 0,45],
+        'area'=> [100,70,40,100,50,100,30],
         'cycles' => [
-            'all' => 3,
+            'all' => 732,
             'day' => 1,
-            'partly' => 5
+            'partly' => 680
         ],
         'activity' => [
-            'percent' => [33, 41, 11],
+            'percent' => [51.3, 42, 6.7],
             'time' => [
-              'charge' => '1 ч 10 мин',
-              'discharge' => '39 ч 15 мин',
-              'downtime' => '14 ч 40 мин'
+              'charge' => '12100 ч 10 мин',
+              'discharge' => '9902 ч 15 мин',
+              'downtime' => '1558 ч 40 мин'
             ]
         ]
     ],
@@ -183,13 +194,13 @@ $chargeGraphicData =
                                     </div>
                                     <div>
                                         <p>Дата изготовления</p>
-                                        <span>05.03.2019</span>
+                                        <span><?=$dateMake?></span>
                                     </div>
                                     <div>
                                         <p>Дата  начала эксплуатации</p>
                                         <div>
-                                            <span>07.05.2019</span>
-                                            <p>( 2г 2мес 1д )</p>
+                                            <span><?=$dateStart?></span>
+                                            <p><?=$periodUse?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -200,7 +211,7 @@ $chargeGraphicData =
                                     </div>
                                     <div>
                                         <p>Полных циклов заряда за всё время</p>
-                                        <span>105</span>
+                                        <span><?=$fullCycles?></span>
                                     </div>
                                     <div>
                                         <div>
@@ -223,7 +234,7 @@ $chargeGraphicData =
                         <p class="battery-effectiveness__title">Эффективность</p>
                         <div class="battery-effectiveness-graphic-wrap">
                             <div class="battery-effectiveness-graphic-persent">
-                                <span>98</span>%
+                                <span><?=(int)$effectiveness?></span>%
                             </div>
                             <div class="battery-effectiveness-graphic">
                                 <div class="battery-effectiveness-graphic-arrow">
@@ -246,11 +257,11 @@ $chargeGraphicData =
                             <ul>
                                 <li class="battery-effectiveness-value-given">
                                     <p>Отдано</p>
-                                    <p><span>34,1</span> кВтч</p>                                    
+                                    <p><span><?=$givenAway?></span> кВтч</p>                                    
                                 </li>
                                 <li class="battery-effectiveness-value-received">
                                     <p>Получено</p>
-                                    <p><span>34,6</span> кВтч</p>  
+                                    <p><span><?=$received?></span> кВтч</p>  
                                 </li>
                             </ul>
                         </div>
@@ -265,25 +276,25 @@ $chargeGraphicData =
                                     </div>
                                 </div>
                             </div>
-                            <div class="object-resource-value">96.5%</div>
+                            <div class="object-resource-value"><?=$remainingResource?>%</div>
                         </div>
                     </div>
                     <div class="battery-data">
                         <div class="battery-data-item">
                             <p class="battery-data-item__title">Напряжение</p>
-                            <p class="battery-data-item__value">49,3 В</p>
+                            <p class="battery-data-item__value"><?=$voltage?> В</p>
                         </div>
                         <div class="battery-data-item">
                             <p class="battery-data-item__title">Ток</p>
-                            <p class="battery-data-item__value">200 А</p>
+                            <p class="battery-data-item__value"><?=$current?> А</p>
                         </div>
                         <div class="battery-data-item">
                             <p class="battery-data-item__title">Температура</p>
-                            <p class="battery-data-item__value">25 °С</p>
+                            <p class="battery-data-item__value"><?=$temperature?> °С</p>
                         </div>
                         <div class="battery-data-item">
                             <p class="battery-data-item__title">Уровень заряда</p>
-                            <p class="battery-data-item__value">80%</p>
+                            <p class="battery-data-item__value"><?=$charge_level?>%</p>
                         </div>
                         <div class="battery-data-item">
                             <p class="battery-data-item__title">Аренда</p>
