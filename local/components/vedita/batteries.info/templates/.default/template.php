@@ -8,18 +8,20 @@
         
     <pre>
     <?
-$fullCycles = 105;
-$givenAway = 34.1;
-$received = 34.6;
-$effectiveness = $givenAway/($received/100);
-$remainingResource = (3000 - $fullCycles) * 100 / 3000;
-$dateMake = "05.03.2019";
-$dateStart = "07.05.2019";
-$periodUse = "(2г 2мес 1д)";
-$voltage = 0;
-$temperature = 12;
-$current = 0;
-$charge_level = 80;
+
+    $fullCycles = 224;
+    $givenAway = 30.1;
+    $received = 32.6;
+    $effectiveness = $givenAway/($received/100);
+    $remainingResource = (3000 - $fullCycles) * 100 / 3000;
+    $dateMake = "05.03.2019";
+    $dateStart = "07.05.2019";
+    $periodUse = "(2г 2мес 1д)";
+    $voltage = 0;
+    $temperature = 12;
+    $current = 0;
+    $charge_level = 80;
+
 $chargeGraphicData = 
 [
     'today' => 
@@ -129,7 +131,7 @@ $chargeGraphicData =
         'discharge' => [0,35, 0,30, 0,45],
         'area'=> [100,70,40,100,50,100,30],
         'cycles' => [
-            'all' => 732,
+            'all' => $fullCycles,
             'day' => 1,
             'partly' => 680
         ],
@@ -276,7 +278,7 @@ $chargeGraphicData =
                                     </div>
                                 </div>
                             </div>
-                            <div class="object-resource-value"><?=$remainingResource?>%</div>
+                            <div class="object-resource-value"><?=(int)$remainingResource?>%</div>
                         </div>
                     </div>
                     <div class="battery-data">
