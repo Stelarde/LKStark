@@ -587,11 +587,11 @@ function batteryBarData(elem) {
     labels: elem.labels,
     datasets: [{
       data: elem.charge,
-      backgroundColor: 'rgba(253, 130, 4, 0.6)',
+      backgroundColor: 'rgba(67, 176, 42, 0.6)',
       order: 0
     }, {
       data: elem.discharge,
-      backgroundColor: 'rgba(67, 176, 42, 0.6)',
+      backgroundColor: 'rgba(253, 130, 4, 0.6)',
       order: 1
     }, {
       data: elem.area,
